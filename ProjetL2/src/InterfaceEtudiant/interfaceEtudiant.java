@@ -10,7 +10,9 @@ import java.io.IOException;
 
 public class interfaceEtudiant extends Application {
 
-    public static void main(String[] args) {
+    public static Stage classStage;
+
+	public static void main(String[] args) {
         launch(args);
     }
 
