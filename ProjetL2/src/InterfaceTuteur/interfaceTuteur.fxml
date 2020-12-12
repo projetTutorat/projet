@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="670.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.InterfaceTuteur.interfaceTuteurControleur">
+   <children>
+      <Button fx:id="Tutorat" layoutX="325.0" layoutY="77.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="295.0" text="Choisir un horaire à enseigner">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="28.0" layoutY="23.0" prefHeight="17.0" prefWidth="87.0" text="Nom, Prénom" />
+      <Button fx:id="Deconnecter" layoutX="833.0" layoutY="19.0" mnemonicParsing="false" text="Se deconnecter" />
+      <Button fx:id="ModeEtudiant" layoutX="833.0" layoutY="52.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Mode Etudiant" />
+      <TreeView layoutX="165.0" layoutY="136.0" prefHeight="200.0" prefWidth="615.0" />
+      <TableView layoutX="153.0" layoutY="396.0" prefHeight="200.0" prefWidth="696.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
