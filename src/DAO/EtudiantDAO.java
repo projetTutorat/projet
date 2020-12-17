@@ -48,7 +48,7 @@ public class EtudiantDAO {
     	   new interfaceEtudiant().start(interfaceEtu);
     	   
         }else {
-        	message.setText("Mot de passe incorrect");
+        	message.setText("Mot de passe incorrectc");
         }
        }else {
     	   message.setText("Numéro étudiant inexistant");
