@@ -45,7 +45,7 @@ public class PersonneDAO {
     	   new interfaceEtudiant().start(interfaceEtu);
     	   
         }else {
-        	message.setText("Mot de passe  bg");
+        	message.setText("Mot de passe");
         }
        }else if(rs2.next()) {
     	   if (textMdp.getText().equals(rs2.getString(1))) {
