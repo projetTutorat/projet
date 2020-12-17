@@ -2,7 +2,9 @@ package InterfaceConnexion;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import DAO.EtudiantDAO;
+
+
+import DAO.PersonneDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,9 +21,9 @@ public class interfaceConnexionControleur{
 	
     public void Login(ActionEvent actionEvent) throws ClassNotFoundException, SQLException, IOException {
     	
-    
-    	EtudiantDAO etu = new EtudiantDAO();
-    	etu.connect_etu(textId,textMdp,message,buttonCo);;
+    	
+    	PersonneDAO p = new PersonneDAO();
+    	p.connect(textId, textMdp, message, buttonCo);
     	
     }
 }

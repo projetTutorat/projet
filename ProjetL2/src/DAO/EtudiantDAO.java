@@ -22,38 +22,5 @@ import javafx.stage.Stage;
 public class EtudiantDAO {
 	
 	
-	
-	
-	public void connect_etu(TextField textId, TextField textMdp, Label message, Button buttonCo) throws ClassNotFoundException, SQLException, IOException {
-		
-    	String url = "jdbc:mysql://localhost/projet";
-        String login = "root";
-        String password = "";
-        
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection(url, login, password);
 
-        Statement stmt = con.createStatement();
-        
-        String sql = "SELECT mdp FROM etudiant WHERE num_etu ='"+textId.getText()+"'";
-        ResultSet rs = stmt.executeQuery(sql);
-
-       if (rs.next()) {
-       if (textMdp.getText().equals(rs.getString(1))) {
-    	   //fermer la fenêtre connexion
-    	   Stage interfaceCo = (Stage) buttonCo.getScene().getWindow();
-    	   interfaceCo.close();
-    	   //ouvrir l'interface étudiant
-    	   Stage interfaceEtu = new Stage();
-    	   new interfaceEtudiant().start(interfaceEtu);
-    	   
-        }else {
-        	message.setText("Mot de passe incorrect");
-        }
-       }else {
-    	   message.setText("Numéro étudiant inexistant");
-       }
-
-
-	}
 }

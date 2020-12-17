@@ -9,7 +9,7 @@ public class ConnexionBDD{
     /**
      * URL de connexion
      */
-    private static String url = "jdbc:mariadb://localhost/projet+l2";
+    private static String url = "jdbc:mariadb://localhost/projet";
     /**
      * Nom du user
      */
