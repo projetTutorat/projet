@@ -143,7 +143,7 @@ public class PersonneDAO extends DAO<Personne> {
             if (textMdp.getText().equals(rs.getString(1))) {
                 System.out.println("Connexion réussi");
             }else {
-                System.out.println("Mot de passe incorrect");
+                System.out.println("Mot de passe incorrectbite");
             }
         }else {
             System.out.println("Identifiant inexistant");
