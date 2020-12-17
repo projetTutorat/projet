@@ -45,7 +45,7 @@ public class PersonneDAO {
     	   new interfaceEtudiant().start(interfaceEtu);
     	   
         }else {
-        	message.setText("Mot de passe incorrectss");
+        	message.setText("Mot de passe incorrect");
         }
        }else if(rs2.next()) {
     	   if (textMdp.getText().equals(rs2.getString(1))) {
