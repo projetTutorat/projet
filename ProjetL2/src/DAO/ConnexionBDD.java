@@ -9,7 +9,7 @@ public class ConnexionBDD{
     /**
      * URL de connexion
      */
-    private static String url = "jdbc:mariadb://localhost/projet";
+    private static String url = "jdbc:mysql://localhost/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     /**
      * Nom du user
      */

@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 
 public abstract class DAO <T> {
@@ -46,7 +47,7 @@ public abstract class DAO <T> {
      * Permet la suppression d'une entrée de la base
      * @param obj
      */
-    public abstract void delete(T obj);
+    public abstract void delete(T obj) throws SQLException, ClassNotFoundException;
 }
 
 

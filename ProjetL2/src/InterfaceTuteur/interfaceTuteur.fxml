@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="670.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.InterfaceTuteur.interfaceTuteurControleur">
+<AnchorPane prefHeight="670.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceTuteur.interfaceTuteurControleur">
    <children>
       <Button fx:id="Tutorat" layoutX="325.0" layoutY="77.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="295.0" text="Choisir un horaire à enseigner">
          <font>

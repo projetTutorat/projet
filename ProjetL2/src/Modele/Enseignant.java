@@ -23,7 +23,7 @@ public class Enseignant extends Personne {
     }
 
 
-    public void connexionEnseignat(){
+    public void connexionEnseignant(){
 
     }
 }

@@ -2,27 +2,32 @@ package DAO;
 
 import Modele.Tuteur;
 
-public class TuteurDAO extends DAO<Tuteur> {
-    @Override
-    public Tuteur find(String id) {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-        return null;
+public class TuteurDAO  {
+
+    public void ajouterTuteurSeance(int idSeance,int idTuteur) throws SQLException, ClassNotFoundException {
+
+        String url = "jdbc:mysql://localhost/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String login = "root";
+        String password = "";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(url, login, password);
+
+        Statement stmt = con.createStatement();
+
+
+        String sql="INSERT INTO s_inscrit_tuteur_seance" +
+                "VALUES" +
+                "(" +
+                "'"+idSeance+"'," +
+                "'"+idTuteur+"'" +
+                ")";
+        stmt.executeUpdate(sql);
     }
-
-    @Override
-    public Tuteur create(Tuteur obj) {
-        return null;
-    }
-
-    @Override
-    public Tuteur update(Tuteur obj) {
-        return null;
-    }
-
-    @Override
-    public void delete(Tuteur obj) {
-
-    }
-
 
 }
