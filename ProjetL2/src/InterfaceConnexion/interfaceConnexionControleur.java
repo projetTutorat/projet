@@ -14,14 +14,18 @@ import javafx.scene.control.TextField;
 
 public class interfaceConnexionControleur{
 	
+	
+	// On récupère les id des éléments qui composent l'interface FXML
 	@FXML private TextField textId; 
 	@FXML private PasswordField textMdp; 
 	@FXML private Label message; 
 	@FXML private Button buttonCo; 
 	
+	//Méthode Login déclenchée à l'appuie du bouton Connexion
     public void Login(ActionEvent actionEvent) throws ClassNotFoundException, SQLException, IOException {
     	
     	
+    	// Appel de la méthode connect() avec les valeurs des éléments qui composent l'interface FXML
     	PersonneDAO p = new PersonneDAO();
     	p.connect(textId, textMdp, message, buttonCo);
     	
