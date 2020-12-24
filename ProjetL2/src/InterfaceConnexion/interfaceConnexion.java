@@ -1,13 +1,14 @@
 package InterfaceConnexion;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import DAO.PersonneDAO;
 
 public class interfaceConnexion extends Application {
 
@@ -18,6 +19,7 @@ public class interfaceConnexion extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+    	
     	// On associe l'interface interfaceConnexion à son interface FXML
         Parent root = FXMLLoader.load(getClass().getResource("InterfaceConnexion.fxml"));
 
@@ -25,7 +27,7 @@ public class interfaceConnexion extends Application {
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Test connexion");
+        primaryStage.setTitle("Connexion");
         primaryStage.show();
     }
 

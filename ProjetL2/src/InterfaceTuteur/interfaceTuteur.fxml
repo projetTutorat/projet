@@ -12,7 +12,7 @@
          </font>
       </Button>
       <Label layoutX="28.0" layoutY="23.0" prefHeight="17.0" prefWidth="87.0" text="Nom, Prénom" />
-      <Button fx:id="Deconnecter" layoutX="833.0" layoutY="19.0" mnemonicParsing="false" text="Se deconnecter" />
+      <Button fx:id="SeDeconnecter" layoutX="833.0" layoutY="19.0" mnemonicParsing="false" text="Se deconnecter" />
       <Button fx:id="ModeEtudiant" layoutX="833.0" layoutY="52.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Mode Etudiant" />
       <TreeView layoutX="165.0" layoutY="136.0" prefHeight="200.0" prefWidth="615.0" />
       <TableView layoutX="153.0" layoutY="396.0" prefHeight="200.0" prefWidth="696.0">

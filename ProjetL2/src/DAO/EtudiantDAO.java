@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.scene.control.Label;
+
 
 public class EtudiantDAO {
 	
@@ -33,5 +35,6 @@ public class EtudiantDAO {
                 "WHERE num_etu='"+num_etu+"'";
         stmt.executeUpdate(sql1);
     }
+   
 
 }

@@ -51,7 +51,7 @@ public class SeanceDAO {
 
 
         public void modifierSeance(TextField textDate, TextField textHoraire,TextField textNbPlaceMax, TextField textBesoin,int idSalle,int idSeance) throws ClassNotFoundException, SQLException {
-            String url = "jdbc:mysql://localhost/projet+l2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String url = "jdbc:mysql://localhost/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String login = "root";
             String password = "";
 
@@ -59,7 +59,6 @@ public class SeanceDAO {
             Connection con = DriverManager.getConnection(url, login, password);
 
             Statement stmt = con.createStatement();
-            Statement stmt2 = con.createStatement();
 
 
             String sql=
@@ -85,28 +84,45 @@ public class SeanceDAO {
         }
 
 
-        public void afficherSeance(String nomFiliere) throws SQLException, ClassNotFoundException {
-
-            String url = "jdbc:mysql://localhost/projet+l2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    	public void afficherSeance(String num) throws ClassNotFoundException, SQLException {
+        	
+        	String url = "jdbc:mysql://localhost/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String login = "root";
             String password = "";
-
+            
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, login, password);
 
             Statement stmt = con.createStatement();
+            Statement stmt2 = con.createStatement();
+            Statement stmt3 = con.createStatement();
+            Statement stmt4 = con.createStatement();
 
-         String sql ="SELECT date, horaire, nbPlaceRestante, nomMat" +
-                 "FROM seance" +
-                 "INNER JOIN matiere" +
-                 "ON  matiere.idMat=seance.idMat" +
-                 "INNER JOIN composee_de_filiere_matiere" +
-                 "ON matiere.idMat=  composee_de_filiere_matiere.idMat" +
-                 "INNER JOIN filiere" +
-                 "ON composee_de_filiere_matiere.idFiliere = filiere.idFiliere" +
-                 "WHERE nomFiliere='"+nomFiliere+"'";
+
+            String sql = "SELECT * FROM seance S INNER JOIN composee_de_filiere_matiere C ON S.idMat = C.idMat INNER JOIN "
+            		+ "appartient_etudiant_filiere A ON C.idFiliere = A.idFiliere INNER JOIN etudiant E ON A.num_etu = E.num_etu WHERE "
+            		+ "E.num_etu='"+num+"'";
             ResultSet rs = stmt.executeQuery(sql);
+           
+            
+            while(rs.next()) {
+                String sql2 = "SELECT * FROM salle WHERE idSalle='"+rs.getString(7)+"'";
+                ResultSet rs2 = stmt2.executeQuery(sql2);
+            	if(rs2.next()) {
+                    String sql3 = "SELECT * FROM matiere WHERE idMat='"+rs.getString(8)+"'";
+                    ResultSet rs3 = stmt3.executeQuery(sql3);
+            		if(rs3.next()) {
+                        String sql4 = "SELECT * FROM enseignant WHERE num_ens='"+rs.getString(9)+"'";
+                        ResultSet rs4 = stmt4.executeQuery(sql4);
+            			if(rs4.next()) {
+            	            System.out.println("Tutorat le "+rs.getString(2)+" à "+rs.getString(3)+" | "+rs.getString(6)+" Salle:"+
+            	                    rs2.getString(2)+rs2.getString(3)+rs2.getString(4)+rs2.getString(5)+
+            	                    " Matière: "+rs3.getString(2)+rs3.getString(3)+" Professeur: "+rs4.getString(2)+rs4.getString(3));
+            			}
+            		}
+            	}
 
+            }
 
         }
 

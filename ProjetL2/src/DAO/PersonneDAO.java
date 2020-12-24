@@ -8,13 +8,26 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
+import InterfaceConnexion.interfaceConnexion;
 import InterfaceEnseignant.interfaceEnseignant;
 import InterfaceEtudiant.interfaceEtudiant;
 import InterfaceTuteur.interfaceTuteur;
 
 public class PersonneDAO {
- 
+	
+	public void deconnect(Button SeDeconnecter) throws IOException {
+		//Fermeture interface actuelle
+ 	   Stage interfaceI = (Stage) SeDeconnecter.getScene().getWindow();
+ 	   interfaceI.close();
+		
+		//Ouverture interface de connexion
+		Stage interfaceCo = new Stage();
+        new interfaceConnexion().start(interfaceCo); 
+	}
+	
+
 	public void connect(TextField textId, TextField textMdp, Label message, Button buttonCo) throws ClassNotFoundException, SQLException, IOException {
+		
 		
 		//Connexion à la BDD
     	String url = "jdbc:mysql://localhost/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -27,7 +40,7 @@ public class PersonneDAO {
         //Création de statement pour exécuter les requêtes SQL
         Statement stmt = con.createStatement();
         Statement stmt2 = con.createStatement();
-        Statement stmt3 =con.createStatement();
+        Statement stmt3 = con.createStatement();
 
         //Ecriture des requêtes SQL et exécution
         String sql = "SELECT mdp FROM etudiant WHERE num_etu ='"+textId.getText()+"'";
@@ -52,10 +65,13 @@ public class PersonneDAO {
     	   // On vérifie si le numéro étudiant est existant dans la table est_tuteur_étudiant
     	   if (rs3.next()){ 
     		 //On ouvre l'interface tuteur
+    		   		
     			   Stage interfaceTut = new Stage();
-                   new interfaceTuteur().start(interfaceTut);   		   
+                   new interfaceTuteur().start(interfaceTut); 
+                
            }else {
         	   //On ouvre l'interface étudiant
+        	   
         	   Stage interfaceEtu = new Stage();
         	   new interfaceEtudiant().start(interfaceEtu); 
            }
@@ -74,6 +90,7 @@ public class PersonneDAO {
         	 //On ouvre l'interface enseignant
         	   Stage interfaceEns = new Stage();
         	   new interfaceEnseignant().start(interfaceEns);
+        	   
         	   
             }else {
             	// Le mot de passe ne correspond pas au mot de passe associé au numéro enseignant
