@@ -12,7 +12,7 @@ public class interfaceEnseignant extends Application {
 
     public static Stage classStage;
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         launch(args);
     }
 

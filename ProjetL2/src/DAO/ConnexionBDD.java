@@ -28,11 +28,15 @@ public class ConnexionBDD{
      * et la créer si elle n'existe pas...
      * @return
      */
+    
     public static Connection getInstance(){
         if(connect == null){
             try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 connect = DriverManager.getConnection(url, user, passwd);
             } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }

@@ -9,6 +9,10 @@ public class Enseignant extends Personne {
         super(nom, prenom, date_de_naissance, numero_identification, mot_de_passe, email, numero_telephone);
     }
 
+    public Enseignant() {
+
+    }
+
 
     public void ajouterEnseignant(){
 
@@ -25,5 +29,10 @@ public class Enseignant extends Personne {
 
     public void connexionEnseignant(){
 
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

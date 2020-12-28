@@ -3,6 +3,7 @@ package InterfaceEtudiant;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import Controleur.ControleurPersonne;
 import DAO.PersonneDAO;
 import DAO.SeanceDAO;
 import InterfaceConnexion.interfaceConnexionControleur;
@@ -18,21 +19,22 @@ public class interfaceEtudiantControleur {
 	
 	public void Deconnect(ActionEvent actionEvent) throws ClassNotFoundException, SQLException, IOException {
 
-		PersonneDAO p = new PersonneDAO();
-		p.deconnect(SeDeconnecter);
+
+		ControleurPersonne.deconnect(SeDeconnecter);
     }
     
     public void VoirLesTutoratsDisponibles(ActionEvent actionEvent) throws ClassNotFoundException, SQLException, IOException {
     	
     	SeanceDAO s = new SeanceDAO();
-    	s.afficherSeance(interfaceConnexionControleur.Instance.getNum());
+    	s.afficherSeanceDisponible(interfaceConnexionControleur.Instance.getNum());
 
     }
     
     
     public void getListMesTutorats(ActionEvent actionEvent) throws ClassNotFoundException, SQLException, IOException {
     	
- 
+    	SeanceDAO s = new SeanceDAO();
+    	s.afficheSeanceInscrit(interfaceConnexionControleur.Instance.getNum());
     	
     }
     

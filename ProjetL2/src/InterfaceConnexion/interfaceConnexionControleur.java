@@ -3,9 +3,11 @@ package InterfaceConnexion;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import Controleur.ControleurPersonne;
 import DAO.EtudiantDAO;
 import DAO.PersonneDAO;
 import InterfaceEtudiant.interfaceEtudiantControleur;
+import Modele.Personne;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,8 +29,8 @@ public class interfaceConnexionControleur{
     	
     	
     	// Appel de la méthode connect() avec les valeurs des éléments qui composent l'interface FXML
-    	PersonneDAO p = new PersonneDAO();
-    	p.connect(textId, textMdp, message, buttonCo);
+		ControleurPersonne.connect(textId, textMdp, message, buttonCo);
+
     	
     	//Récupération du numéro identifiant
     	num = textId.getText();

@@ -11,17 +11,12 @@
                   <cursor>
                         <Cursor fx:constant="HAND" />
                   </cursor></Button>
-            <Button fx:id="CréerUneSéance" layoutX="246.0" layoutY="59.0" mnemonicParsing="false" onAction="#CréerUneSéance" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-radius: 10; -fx-border-color: gray;" text="Créer une séance" />
+            <Button fx:id="CréerUneSéance" layoutX="246.0" layoutY="59.0" mnemonicParsing="false" onAction="#CreerUneSeance" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-radius: 10; -fx-border-color: gray;" text="Créer une séance" />
             <TitledPane layoutX="103.0" layoutY="92.0" prefHeight="200.0" prefWidth="395.0" style="-fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 10; -fx-background-radius: 10;" text="Séances">
                   <content>
                         <AnchorPane fx:id="AnchorPaneMesTutorats" prefHeight="180.0" prefWidth="393.0" style="-fx-background-color: white;">
                               <children>
-                                    <MenuButton fx:id="ButtonVosSéances" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#getListMesSéances" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: gray; -fx-border-radius: 10;" text="Vos séances">
-                                          <items>
-                                                <MenuItem mnemonicParsing="false" text="Action 1" />
-                                                <MenuItem mnemonicParsing="false" text="Action 2" />
-                                          </items>
-                                    </MenuButton>
+                                    <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Test" onAction="#getListMesSeances"/>
                               </children>
                         </AnchorPane>
                   </content>

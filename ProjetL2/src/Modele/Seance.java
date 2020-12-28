@@ -2,16 +2,24 @@ package Modele;
 
 public class Seance {
 
+    private String date;
+    private String horaire;
     private int idSeance;
     private int nbPlaceMax;
     private int nbPlaceRestante;
     private String besoin;
 
-    public Seance(int idSeance, int nbPlaceMax, int nbPlaceRestante, String besoin) {
+    public Seance(String date,String horaire ,int idSeance, int nbPlaceMax, int nbPlaceRestante, String besoin) {
+        this.date=date;
+        this.horaire=horaire;
         this.idSeance = idSeance;
         this.nbPlaceMax = nbPlaceMax;
         this.nbPlaceRestante = nbPlaceRestante;
         this.besoin = besoin;
+    }
+
+    public Seance() {
+
     }
 
     public int getIdSeance() {
@@ -47,6 +55,21 @@ public class Seance {
     }
 
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getHoraire() {
+        return horaire;
+    }
+
+    public void setHoraire(String horaire) {
+        this.horaire = horaire;
+    }
 
     public void ajouterEtudiant(){
 

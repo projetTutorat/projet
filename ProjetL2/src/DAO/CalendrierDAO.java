@@ -1,52 +1,136 @@
 package DAO;
 
 
-import java.io.IOException;
+import Modele.Calendrier;
+import Modele.Seance;
+
+
 import java.sql.*;
 
-import static java.sql.JDBCType.NULL;
 
-public class CalendrierDAO {
-
+public class CalendrierDAO extends  DAO<Calendrier>{
 
 
-    public void ajouterSeanceCalendrier(int idSeance) throws ClassNotFoundException, SQLException, IOException{
-        String url = "jdbc:mysql://localhost/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        String login = "root";
-        String password = "";
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection(url, login, password);
-
-        Statement stmt = con.createStatement();
-
-
-        String sql=
-                "SELECT date"+
-                        "FROM seance"+
-                        "WHERE idSeance= '"+ idSeance+"'";
-        ResultSet rs = stmt.executeQuery(sql);
-
-        String sql2 =
-                "SELECT horaire"+
-                        "FROM seance"+
-                        "WHERE idSeance='"+idSeance +"'";
-        ResultSet rs2 = stmt.executeQuery(sql2);
-
-
-        String sql3=
-                " INSERT INTO seance"+
-                "VALUES"+
-                "("+
-                NULL+","+
-                "SUBSTR(rs,7,10),"+
-                "SUBSTR(rs,4,5),"+
-                "SUBSTR(rs,1,2),"+
-                "SUBSTR(rs2,1,2),"+
-                "SUBSTR(rs2,4,5)"+
-                ")";
-        stmt.executeUpdate(sql3);
+    @Override
+    public Calendrier find(String id) {
+        return null;
     }
+
+    @Override
+    public Calendrier create(Calendrier obj) {
+        return null;
+    }
+
+    @Override
+    public Calendrier update(Calendrier obj) {
+        return null;
+    }
+
+    @Override
+    public void delete(Calendrier obj) throws SQLException, ClassNotFoundException {
+
+    }
+
+
+    public Calendrier ajouterSeanceCalendrier(Calendrier calendrier ) {
+        try {
+            Connection connection = ConnexionBDD.getInstance();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO calendrier" +
+                    "(" +
+                    "annnee" +
+                    "mois" +
+                    "jour" +
+                    "heures" +
+                    "minutes" +
+                    ")" +
+                    "VALUES "+
+                    "(?,?,?,?,?)");
+
+            statement.setString(1,calendrier.getAnnee());
+            statement.setString(2,calendrier.getMois());
+            statement.setString(3,calendrier.getJour());
+            statement.setString(4,calendrier.getHeures());
+            statement.setString(5,calendrier.getMinutes());
+
+
+            statement.execute();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return calendrier;
+    }
+
+
+
+    public Calendrier getCalendrierById(int idCalendrier){
+        try {
+
+            Connection connection = ConnexionBDD.getInstance();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM calendrier WHERE idCalendrier =?");
+            statement.setInt(1,idCalendrier);
+
+            ResultSet resultSet=  statement.executeQuery();
+
+            Calendrier calendrier= new Calendrier();
+            while (resultSet.next()){
+                calendrier.setIdCalendrier(resultSet.getInt("idCalendrier"));
+                calendrier.setAnnee(resultSet.getString("annee"));
+                calendrier.setMois(resultSet.getString("mois"));
+                calendrier.setJour(resultSet.getString("jour"));
+                calendrier.setHeures(resultSet.getString("heures"));
+                calendrier.setMinutes(resultSet.getString("minutes"));
+            }
+
+            return calendrier;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public Calendrier getCalendrierBySeance(Seance seance){
+        try {
+
+            Connection connection = ConnexionBDD.getInstance();
+            PreparedStatement statement = connection.prepareStatement("SELECT * " +
+                    "FROM calendrier " +
+                    "WHERE annee =?" +
+                    "AND mois =?" +
+                    "AND jour=?" +
+                    "AND heures=? " +
+                    "AND minutes=? ");
+            statement.setString(1,(seance.getDate()).substring(7,10));
+            statement.setString(2,(seance.getDate()).substring(4,5));
+            statement.setString(3,(seance.getDate()).substring(1,2));
+            statement.setString(4,(seance.getHoraire()).substring(1,2));
+            statement.setString(5,(seance.getHoraire()).substring(4,5));
+
+            ResultSet resultSet=  statement.executeQuery();
+
+            Calendrier calendrier= new Calendrier();
+            while (resultSet.next()){
+                calendrier.setIdCalendrier(resultSet.getInt("idCalendrier"));
+                calendrier.setAnnee(resultSet.getString("annee"));
+                calendrier.setMois(resultSet.getString("mois"));
+                calendrier.setJour(resultSet.getString("jour"));
+                calendrier.setHeures(resultSet.getString("heures"));
+                calendrier.setMinutes(resultSet.getString("minutes"));
+            }
+
+            return calendrier;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 
 
 
@@ -67,4 +151,6 @@ public class CalendrierDAO {
 
         ResultSet rs = stmt.executeQuery(sql);
     }
+
+
 }

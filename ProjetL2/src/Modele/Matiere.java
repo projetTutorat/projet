@@ -13,6 +13,10 @@ public class Matiere {
         this.sousCategorie = sousCategorie;
     }
 
+    public Matiere() {
+
+    }
+
 
     public int getIdMatiere() {
         return idMatiere;

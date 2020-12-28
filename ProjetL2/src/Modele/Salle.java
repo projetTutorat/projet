@@ -7,14 +7,14 @@ public class Salle {
     private String site;
     private String batiment;
     private int etage;
-    private int numeroSalle;
+    private String numeroSalle;
     private int capaciteMax;
     private boolean salle_info;
-    private boolean salle_TP_physique;
-    private  boolean Salle_TP_biologie;
+    private boolean salle_TP;
 
 
-    public Salle(int idSalle, String site, String batiment, int etage, int numeroSalle, int capaciteMax, boolean salle_info, boolean salle_TP_physique, boolean Salle_TP_biologie) {
+
+    public Salle(int idSalle, String site, String batiment, int etage, String numeroSalle, int capaciteMax, boolean salle_info, boolean salle_TP) {
         this.idSalle = idSalle;
         this.site = site;
         this.batiment = batiment;
@@ -22,8 +22,11 @@ public class Salle {
         this.numeroSalle = numeroSalle;
         this.capaciteMax = capaciteMax;
         this.salle_info = salle_info;
-        this.salle_TP_physique = salle_TP_physique;
-        this.Salle_TP_biologie = Salle_TP_biologie;
+        this.salle_TP = salle_TP;
+    }
+
+    public Salle() {
+
     }
 
     public int getIdSalle() {
@@ -58,11 +61,11 @@ public class Salle {
         this.etage = etage;
     }
 
-    public int getNumeroSalle() {
+    public String getNumeroSalle() {
         return numeroSalle;
     }
 
-    public void setNumeroSalle(int numeroSalle) {
+    public void setNumeroSalle(String numeroSalle) {
         this.numeroSalle = numeroSalle;
     }
 
@@ -82,19 +85,13 @@ public class Salle {
         this.salle_info = salle_info;
     }
 
-    public boolean isSalle_TP_physique() {
-        return salle_TP_physique;
+    public boolean isSalle_TP() {
+        return salle_TP;
     }
 
-    public void setSalle_TP_physique(boolean salle_TP_physique) {
-        this.salle_TP_physique = salle_TP_physique;
+    public void setSalle_TP(boolean salle_TP) {
+        this.salle_TP = salle_TP;
     }
 
-    public boolean Salle_TP_biologie() {
-        return Salle_TP_biologie;
-    }
 
-    public void setSalle_TP_biologie(boolean salle_TP_biologie) {
-        Salle_TP_biologie = salle_TP_biologie;
-    }
 }

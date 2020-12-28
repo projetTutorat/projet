@@ -94,5 +94,14 @@ public class Personne {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", date_de_naissance='" + date_de_naissance + '\'' +
+                ", numero_identification='" + numero_identification + '\'' +
+                ", mot_de_passe='" + mot_de_passe + '\'' +
+                ", email='" + email + '\'' +
+                ", numero_telephone='" + numero_telephone + '\'' ;
+    }
 }

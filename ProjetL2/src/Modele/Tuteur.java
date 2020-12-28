@@ -9,6 +9,10 @@ public class Tuteur extends Etudiant{
     this.idTuteur=idTuteur;
     }
 
+    public Tuteur() {
+
+    }
+
     public int getIdTuteur() {
         return idTuteur;
     }
@@ -21,5 +25,12 @@ public class Tuteur extends Etudiant{
 
     public void connexionTuteur() {
 
+    }
+
+
+    @Override
+    public String toString() {
+        return  super.toString() +
+                "idTuteur=" + idTuteur ;
     }
 }

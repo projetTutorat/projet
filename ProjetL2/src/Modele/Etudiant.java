@@ -12,6 +12,10 @@ public class Etudiant extends Personne {
         this.nombre_absence=0;
     }
 
+    public Etudiant() {
+
+    }
+
 
     public Integer getNombre_absence() {
         return nombre_absence;
@@ -40,5 +44,9 @@ public class Etudiant extends Personne {
 
     }
 
-
+    @Override
+    public String toString() {
+        return super.toString() +
+                "nombre_absence=" + nombre_absence ;
+    }
 }
