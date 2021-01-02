@@ -1,5 +1,6 @@
 package Controleur;
 
+import DAO.ConnexionBDD;
 import DAO.EnseignantDAO;
 import DAO.EtudiantDAO;
 import DAO.TuteurDAO;
@@ -20,7 +21,6 @@ import java.sql.SQLException;
 
 
 public class ControleurPersonne {
-
 
     public static void connect(TextField textId, TextField textMdp, Label message, Button buttonCo) throws IOException, SQLException, ClassNotFoundException {
 

@@ -28,7 +28,6 @@ public class ConnexionBDD{
      * et la créer si elle n'existe pas...
      * @return
      */
-    
     public static Connection getInstance(){
         if(connect == null){
             try {

@@ -21,7 +21,7 @@
       </cursor>
    </Button>
    <TextField fx:id="textId" layoutX="61.0" layoutY="130.0" promptText="Identifiant" />
-   <Hyperlink fx:id="forgotMdp" layoutX="77.0" layoutY="201.0" text="mot de passe oublié" />
+   <Hyperlink fx:id="forgotMdp" layoutX="77.0" layoutY="201.0" text="mot de passe oublié" onAction="#ChangePswd" />
    <RadioButton fx:id="stayCo" ellipsisString="" layoutX="91.0" layoutY="233.0" mnemonicParsing="false" text="Rester connecté" textAlignment="CENTER">
       <font>
          <Font name="System Bold" size="9.0" />

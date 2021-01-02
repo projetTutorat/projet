@@ -2,6 +2,8 @@ package DAO;
 
 import Modele.Etudiant;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class EtudiantDAO extends DAO<Etudiant> {
@@ -60,6 +62,41 @@ public class EtudiantDAO extends DAO<Etudiant> {
     }
 
 
+    public static List<Etudiant> getEtudiantsByIdSeance(int idSeance,String num_ens){
+        try {
+
+            Connection connection = ConnexionBDD.getInstance();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM etudiant e INNER JOIN participe_etudiant_seance p ON e.num_etu = p.num_etu INNER JOIN seance s ON p.idSeance = s.idSeance WHERE s.idSeance = ? AND s.num_ens = ?");
+            statement.setInt(1,idSeance);
+            statement.setString(2,num_ens);
+
+            ResultSet resultSet=  statement.executeQuery();
+
+            List<Etudiant> listeEtudiant = new ArrayList<Etudiant>();
+
+            while (resultSet.next()){
+                Etudiant etudiant= new Etudiant();
+                etudiant.setNumero_identification(resultSet.getString("num_etu"));
+                etudiant.setNom(resultSet.getString("nom"));
+                etudiant.setPrenom(resultSet.getString("prenom"));
+                etudiant.setDate_de_naissance(resultSet.getString("date_naissance"));
+                etudiant.setMot_de_passe(resultSet.getString("mdp"));
+                etudiant.setEmail(resultSet.getString("email"));
+                etudiant.setNumero_telephone(resultSet.getString("num_tel"));
+                etudiant.setNombre_absence(resultSet.getInt("nombreAbsence"));
+                listeEtudiant.add(etudiant);
+            }
+
+            return listeEtudiant;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+
 
 
 
@@ -85,12 +122,19 @@ public class EtudiantDAO extends DAO<Etudiant> {
     }
 
 
-
-    public Etudiant ajouterEtudiantSeance(Etudiant etudiant){
+//lors de l'appel de cette methode, appeler methode 'decrementerPlaceSeance'
+    public Etudiant ajouterEtudiantSeance(Etudiant etudiant,int idSeance){
 
         try {
             Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement = connection.prepareStatement("");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO participe_etudiant_seance" +
+            		"VALUES" +
+                    "(" +
+                    "idSeance = ? " +
+                    "num_etu = ?" +
+                    ")");
+            statement.setInt(1,idSeance);
+            statement.setString(2,etudiant.getNumero_identification());	
 
             statement.execute();
 
@@ -101,10 +145,14 @@ public class EtudiantDAO extends DAO<Etudiant> {
         return etudiant;
     }
 
-    public Etudiant demissionEtudiantSeance(Etudiant etudiant){
+//lors de l'appel de cette methode, appeler methode 'incrementerPlaceSeance'
+    public Etudiant demissionEtudiantSeance(Etudiant etudiant, int idSeance){
         try {
             Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement = connection.prepareStatement("");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM participe_etudiant_seance" +
+            		"WHERE num_etu = "+ etudiant.getNumero_identification() +
+            		"AND idSeance = "+ idSeance
+            		);
 
             statement.execute();
 

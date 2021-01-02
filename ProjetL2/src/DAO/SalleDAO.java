@@ -32,7 +32,7 @@ public class SalleDAO extends DAO<Salle> {
 
 
 
-    public Salle getSalleById(int idSalle){
+    public static Salle getSalleById(int idSalle){
 
         try {
 
@@ -61,15 +61,14 @@ public class SalleDAO extends DAO<Salle> {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
-
-        return null;
     }
 
 
 
 
-    public Salle getSalleByNom(String site, String batiment, int etage, String numSalle){
+    public Salle getSalleBySiteBetimentEtageNumeroSalle(String site, String batiment, int etage, String numSalle){
         try {
 
             Connection connection = ConnexionBDD.getInstance();

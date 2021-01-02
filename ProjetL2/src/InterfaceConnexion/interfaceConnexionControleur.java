@@ -38,6 +38,10 @@ public class interfaceConnexionControleur{
    
     }
     
+    public void ChangePswd(ActionEvent actionEvent) throws ClassNotFoundException, SQLException, IOException {
+    	BrowserControl.displayURL("https://multipass.univ-tours.fr/activation.php");
+    }
+    
 	//Création String num avec son getter
 	private String num;
 	public String getNum() {

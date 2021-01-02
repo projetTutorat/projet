@@ -1,6 +1,11 @@
 package InterfaceEtudiant;
 
+import DAO.EtudiantDAO;
+import InterfaceConnexion.interfaceConnexionControleur;
+import Modele.Etudiant;
 import javafx.application.Application;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -36,5 +41,6 @@ public class interfaceEtudiant extends Application {
         primaryStage.show();
 
     }
+
     
 }

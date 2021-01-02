@@ -92,7 +92,7 @@ public class CalendrierDAO extends  DAO<Calendrier>{
         return null;
     }
 
-
+        //modifier les substring
     public Calendrier getCalendrierBySeance(Seance seance){
         try {
 

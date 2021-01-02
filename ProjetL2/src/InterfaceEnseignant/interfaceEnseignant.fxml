@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="717.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceEnseignant.interfaceEnseignantControleur">
+<AnchorPane prefHeight="717.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceEnseignant.interfaceEnseignantControleur">
       <children>
             <Label fx:id="BonjourNomPrenom" layoutX="23.0" layoutY="14.0" style="-fx-border-color: gray; -fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-label-padding: 5;" text="Bonjour &lt;Prenom, nom&gt;" />
             <Button fx:id="SeDeconnecter" layoutX="480.0" layoutY="15.0" mnemonicParsing="false" onAction="#Deconnect" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 10;" text="Se déconnecter" textAlignment="CENTER">
@@ -16,7 +16,8 @@
                   <content>
                         <AnchorPane fx:id="AnchorPaneMesTutorats" prefHeight="180.0" prefWidth="393.0" style="-fx-background-color: white;">
                               <children>
-                                    <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Test" onAction="#getListMesSeances"/>
+                                    <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#getListMesSeances" text="Test" />
+                  <TreeView fx:id="treeViewAfficherSeance" layoutY="41.0" prefHeight="125.0" prefWidth="363.0" />
                               </children>
                         </AnchorPane>
                   </content>

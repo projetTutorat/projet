@@ -28,7 +28,7 @@ public class MatiereDAO extends DAO<Matiere> {
 
 
 
-    public Matiere getMatiereById(int idMat){
+    public static Matiere getMatiereById(int idMat){
         try {
 
             Connection connection = ConnexionBDD.getInstance();
@@ -48,9 +48,8 @@ public class MatiereDAO extends DAO<Matiere> {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
-
-        return null;
     }
 
 

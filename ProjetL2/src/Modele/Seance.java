@@ -8,14 +8,21 @@ public class Seance {
     private int nbPlaceMax;
     private int nbPlaceRestante;
     private String besoin;
+    private int idSalle;
+    private int idMat;
+    private String num_ens;
 
-    public Seance(String date,String horaire ,int idSeance, int nbPlaceMax, int nbPlaceRestante, String besoin) {
+    public Seance(String date,String horaire ,int idSeance, int nbPlaceMax, int nbPlaceRestante, String besoin,int idSalle,int idMat,String num_ens) {
         this.date=date;
         this.horaire=horaire;
         this.idSeance = idSeance;
         this.nbPlaceMax = nbPlaceMax;
         this.nbPlaceRestante = nbPlaceRestante;
         this.besoin = besoin;
+        this.idSalle = idSalle;
+        this.idMat = idMat;
+        this.num_ens= num_ens;
+
     }
 
     public Seance() {
@@ -71,34 +78,27 @@ public class Seance {
         this.horaire = horaire;
     }
 
-    public void ajouterEtudiant(){
-
+    public int getIdSalle() {
+        return idSalle;
     }
 
-    public void ajouterEtudiantTutorat(){
-
+    public void setIdSalle(int idSalle) {
+        this.idSalle = idSalle;
     }
 
-    public void ajouterEtudiantListeAttente(){
-
+    public int getIdMat() {
+        return idMat;
     }
 
-
-    public void suppressionEtudiant(){
-
+    public void setIdMat(int idMat) {
+        this.idMat = idMat;
     }
 
-    public void ajouterTuteur(){
-
+    public String getNum_ens() {
+        return num_ens;
     }
 
-
-    public void envoieMail(){
-
-    }
-
-
-    public void suppressionSeance(){
-
+    public void setNum_ens(String num_ens) {
+        this.num_ens = num_ens;
     }
 }
