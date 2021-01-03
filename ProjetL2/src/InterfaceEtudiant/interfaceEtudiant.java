@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class interfaceEtudiant extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException, ClassNotFoundException, SQLException  {
+    	
+    	primaryStage.getIcons().add(new Image("favicon_univ.png"));
 		
         Parent root = FXMLLoader.load(getClass().getResource("interfaceEtudiant.fxml"));
     	

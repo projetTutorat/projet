@@ -1,4 +1,6 @@
-package InterfaceConnexion;
+package InterfaceEnseignant;
+
+import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,16 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+public class interfaceCreerSeance extends Application {
 
-import javax.swing.ImageIcon;
-
-import DAO.PersonneDAO;
-
-public class interfaceConnexion extends Application {
+    public static Stage classStage;
 
     public static void main(String[] args) {
-    	// On exécute l'interface
         launch(args);
     }
 
@@ -25,17 +22,12 @@ public class interfaceConnexion extends Application {
     	
     	primaryStage.getIcons().add(new Image("favicon_univ.png"));
     	
-    	// On associe l'interface interfaceConnexion à son interface FXML
-        Parent root = FXMLLoader.load(getClass().getResource("InterfaceConnexion.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("interfaceCreerSeance.fxml"));
 
-        // On crée une nouvelle scène et on lance la fenêtre
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Connexion");
+        primaryStage.setTitle("Test formulaire");
         primaryStage.show();
-
     }
-
-
 }
