@@ -1,6 +1,5 @@
 package DAO;
 
-import Modele.Etudiant;
 import Modele.Matiere;
 
 import java.sql.*;

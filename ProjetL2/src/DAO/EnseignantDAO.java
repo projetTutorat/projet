@@ -2,7 +2,6 @@ package DAO;
 
 
 import Modele.Enseignant;
-
 import java.sql.*;
 
 public class EnseignantDAO extends DAO<Enseignant> {
