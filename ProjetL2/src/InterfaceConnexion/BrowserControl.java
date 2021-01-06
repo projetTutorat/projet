@@ -4,6 +4,7 @@ import java.io.IOException;
 
 /**
  * Class pour le mot de passe oublié
+ * 
  */
 public class BrowserControl
 {
