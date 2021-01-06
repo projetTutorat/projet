@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="717.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceEnseignant.interfaceEnseignantControleur">
+      <children>
+            <Label fx:id="BonjourNomPrenom" layoutX="23.0" layoutY="14.0" style="-fx-border-color: gray; -fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-label-padding: 5;" text="Bonjour " />
+            <Button fx:id="SeDeconnecter" layoutX="480.0" layoutY="15.0" mnemonicParsing="false" onAction="#Deconnect" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 10;" text="Se déconnecter" textAlignment="CENTER">
+                  <cursor>
+                        <Cursor fx:constant="HAND" />
+                  </cursor></Button>
+            <Button fx:id="CréerUneSéance" layoutX="246.0" layoutY="59.0" mnemonicParsing="false" onAction="#CreerUneSeance" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-radius: 10; -fx-border-color: gray;" text="Créer une séance" />
+            <Label layoutX="238.0" layoutY="342.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: gray; -fx-label-padding: 5;" text="Calendrier des séances" />
+            <TableView layoutY="377.0" prefHeight="340.0" prefWidth="609.0">
+                  <columns>
+                        <TableColumn fx:id="Horaires" prefWidth="53.0" text="Horaires" />
+                        <TableColumn fx:id="Lundi" prefWidth="99.0" text="Lundi" />
+                        <TableColumn fx:id="Mardi" prefWidth="75.0" text="Mardi" />
+                        <TableColumn fx:id="Mercredi" prefWidth="75.0" text="Mercredi" />
+                        <TableColumn fx:id="Jeudi" prefWidth="75.0" text="Jeudi" />
+                        <TableColumn fx:id="Vendredi" prefWidth="75.0" text="Vendredi" />
+                        <TableColumn fx:id="Samedi" prefWidth="77.0" text="Samedi" />
+                        <TableColumn fx:id="Dimanche" prefWidth="73.0" text="Dimanche" />
+                  </columns>
+                  <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                  </columnResizePolicy>
+            </TableView>
+      <TitledPane animated="false" layoutX="93.0" layoutY="125.0" prefHeight="206.0" prefWidth="405.0" text="Seance">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TreeView fx:id="TreeViewSeance" prefHeight="180.0" prefWidth="405.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      </children>
+
+
+</AnchorPane>
