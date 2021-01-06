@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 /**
  * class controlleur de l'interface connexion
  */
-public class interfaceConnexionControleur{
+public class interfaceConnexionControleur {
 
 	// On récupère les id des éléments qui composent l'interface FXML
 	@FXML private TextField textId;

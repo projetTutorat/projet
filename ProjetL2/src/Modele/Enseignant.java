@@ -1,6 +1,6 @@
 package Modele;
 
-public class Enseignant extends Personne {
+public class Enseignant extends Personne  {
 
 
     /**

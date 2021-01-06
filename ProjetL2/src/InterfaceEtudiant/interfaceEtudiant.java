@@ -1,8 +1,5 @@
 package InterfaceEtudiant;
 
-import DAO.EtudiantDAO;
-import InterfaceConnexion.interfaceConnexionControleur;
-import Modele.Etudiant;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -1,6 +1,6 @@
 package Modele;
 
-public class Etudiant extends Personne {
+public class Etudiant extends Personne  {
 
 
     private Integer nombre_absence;

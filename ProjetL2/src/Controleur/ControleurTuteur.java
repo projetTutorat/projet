@@ -1,4 +1,4 @@
 package Controleur;
 
-public class ControleurTuteur {
+public class ControleurTuteur  {
 }

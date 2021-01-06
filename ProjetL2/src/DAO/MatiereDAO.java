@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MatiereDAO extends DAO<Matiere> {
+public class MatiereDAO extends DAO<Matiere>  {
     @Override
     public Matiere find(String id) {
         return null;

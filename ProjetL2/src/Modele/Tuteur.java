@@ -1,6 +1,6 @@
 package Modele;
 
-public class Tuteur extends Etudiant{
+public class Tuteur extends Etudiant {
 
     private int idTuteur;
 

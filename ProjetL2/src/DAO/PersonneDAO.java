@@ -1,7 +1,7 @@
 package DAO;
 
 
-public class PersonneDAO {
+public class PersonneDAO  {
 
 
 }

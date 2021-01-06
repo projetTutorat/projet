@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 /**
  * class interface enseignant
  */
-public class interfaceEnseignant extends Application {
+public class interfaceEnseignant extends Application  {
 
     public static Stage classStage;
     /**

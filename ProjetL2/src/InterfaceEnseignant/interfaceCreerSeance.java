@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 /**
  * Class de l'interface pour créer une séance
  */
-public class interfaceCreerSeance extends Application {
+public class interfaceCreerSeance extends Application  {
 
     public static Stage classStage;
 

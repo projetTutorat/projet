@@ -4,7 +4,7 @@ package DAO;
 import Modele.Enseignant;
 import java.sql.*;
 
-public class EnseignantDAO extends DAO<Enseignant> {
+public class EnseignantDAO extends DAO<Enseignant>  {
 
     @Override
     public Enseignant find(String id) {

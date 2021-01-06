@@ -1,6 +1,6 @@
 package Modele;
 
-public class Matiere {
+public class Matiere  {
 
     private int idMatiere;
     private String nomMatiere;

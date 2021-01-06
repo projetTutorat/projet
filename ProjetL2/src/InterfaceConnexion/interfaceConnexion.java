@@ -14,7 +14,7 @@ import DAO.PersonneDAO;
 /**
  * Class ppur l'interface de connexion
  */
-public class interfaceConnexion extends Application {
+public class interfaceConnexion extends Application  {
     /**
      * La méthode main est static et ne retourne rien.
      * Elle éxécute l'interface.

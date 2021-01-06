@@ -5,8 +5,7 @@ import java.io.IOException;
 /**
  * Class pour le mot de passe oublié
  */
-public class BrowserControl
-{
+public class BrowserControl {
 
     /**
      * La méthode displayURL est static et ne retourne rien.

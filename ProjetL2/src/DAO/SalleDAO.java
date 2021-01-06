@@ -1,6 +1,5 @@
 package DAO;
 
-import Modele.Matiere;
 import Modele.Salle;
 
 import java.sql.Connection;
@@ -8,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SalleDAO extends DAO<Salle> {
+public class SalleDAO extends DAO<Salle>  {
     @Override
     public Salle find(String id) {
         return null;

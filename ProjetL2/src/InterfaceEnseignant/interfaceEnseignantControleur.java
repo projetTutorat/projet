@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 /**
  * class du controlleur de l'interface enseignant.
  */
-public class interfaceEnseignantControleur implements Initializable  {
+public class interfaceEnseignantControleur implements Initializable   {
 	
 	@FXML private Button SeDeconnecter;
 

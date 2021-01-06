@@ -1,23 +1,11 @@
 package DAO;
 
-import Modele.Etudiant;
 import Modele.Seance;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.sql.Types.NULL;
 
 
 public class SeanceDAO extends DAO<Seance> {

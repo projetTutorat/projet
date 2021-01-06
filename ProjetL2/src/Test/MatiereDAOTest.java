@@ -1,6 +1,5 @@
 package Test;
 
-import DAO.DAO;
 import DAO.MatiereDAO;
 import Modele.Matiere;
 import org.junit.jupiter.api.Test;

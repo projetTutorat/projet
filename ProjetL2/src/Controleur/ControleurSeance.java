@@ -13,7 +13,7 @@ import java.util.List;
  * Classe controleur séance
  */
 
-public class ControleurSeance {
+public class ControleurSeance  {
 
 
     /**

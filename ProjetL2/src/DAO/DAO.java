@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-public abstract class DAO <T> {
+public abstract class DAO <T>  {
 
 
     public Connection connect = ConnexionBDD.getInstance();

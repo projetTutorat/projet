@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class EtudiantDAO extends DAO<Etudiant> {
+public class EtudiantDAO extends DAO<Etudiant>  {
 
 
     @Override

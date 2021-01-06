@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 /**
  * class interface tuteur
  */
-public class interfaceTuteur extends Application {
+public class interfaceTuteur extends Application  {
 
     /**
      * La méthode main est static et elle ne retourne rien.

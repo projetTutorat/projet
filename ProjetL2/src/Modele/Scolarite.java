@@ -1,6 +1,6 @@
 package Modele;
 
-public class Scolarite {
+public class Scolarite  {
 
 
     public void suppressionSeance(){}

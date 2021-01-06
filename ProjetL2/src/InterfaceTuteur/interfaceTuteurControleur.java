@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 /**
  * class controlleur de l'interface tuteur
  */
-public class interfaceTuteurControleur implements Initializable {
+public class interfaceTuteurControleur implements Initializable  {
 
 
 	@FXML private AnchorPane Main;

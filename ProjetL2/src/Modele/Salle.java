@@ -1,6 +1,6 @@
 package Modele;
 
-public class Salle {
+public class Salle  {
 
 
     private int idSalle;

@@ -1,6 +1,6 @@
 package Modele;
 
-public class Seance {
+public class Seance  {
 
     private String date;
     private String horaire;

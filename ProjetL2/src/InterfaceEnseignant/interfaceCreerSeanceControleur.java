@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 /**
  * Class controlleur de l'interfaceCreerSeance
  */
-public class interfaceCreerSeanceControleur implements Initializable {
+public class interfaceCreerSeanceControleur implements Initializable  {
 	
 	@FXML private Button buttonCreerSeance;
 	@FXML private Button Retour;

@@ -1,6 +1,5 @@
 package Test;
 
-import Modele.Personne;
 import Modele.Tuteur;
 import org.junit.jupiter.api.Test;
 

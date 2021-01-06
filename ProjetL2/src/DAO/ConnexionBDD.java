@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnexionBDD{
+public class ConnexionBDD {
 
     /**
      * URL de connexion
