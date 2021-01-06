@@ -2,20 +2,32 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="670.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceTuteur.interfaceTuteurControleur">
+<AnchorPane fx:id="Main" prefHeight="670.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceTuteur.interfaceTuteurControleur">
    <children>
-      <Button fx:id="Tutorat" layoutX="325.0" layoutY="77.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="295.0" text="Choisir un horaire à enseigner">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Label layoutX="28.0" layoutY="23.0" prefHeight="17.0" prefWidth="87.0" text="Nom, Prénom" />
       <Button fx:id="SeDeconnecter" layoutX="833.0" layoutY="19.0" mnemonicParsing="false" onAction="#Deconnect" text="Se deconnecter" />
       <Button fx:id="ModeEtudiant" layoutX="833.0" layoutY="52.0" mnemonicParsing="false" onAction="#ModeEtudiant" prefHeight="25.0" prefWidth="98.0" text="Mode Etudiant" />
-      <TreeView layoutX="165.0" layoutY="136.0" prefHeight="200.0" prefWidth="615.0" />
-      <TableView layoutX="153.0" layoutY="396.0" prefHeight="200.0" prefWidth="696.0">
+       <Accordion layoutX="197.0" layoutY="97.0" prefHeight="261.0" prefWidth="572.0">
+           <panes>
+               <TitledPane fx:id="TutoratsDisponibles" animated="true" text="Tutorats Inscrits">
+                   <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                               <TreeView fx:id="treeViewTutoratsInscritsTuteur" prefHeight="212.0" prefWidth="572.0" />
+                           </children></AnchorPane>
+                   </content>
+               </TitledPane>
+               <TitledPane fx:id="TutoratsInscrits" animated="true" prefHeight="222.0" prefWidth="488.0" text="Tutorats Disponibles">
+                   <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                               <TreeView fx:id="treeViewTutoratsDisponiblesTuteur" onContextMenuRequested="#inscriptionTutoratTuteur" onMouseClicked="#inscriptionTutoratTuteur" prefHeight="209.0" prefWidth="572.0" />
+                           </children></AnchorPane>
+                   </content>
+               </TitledPane>
+           </panes>
+       </Accordion>
+      <TableView layoutX="219.0" layoutY="447.0" prefHeight="200.0" prefWidth="528.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />

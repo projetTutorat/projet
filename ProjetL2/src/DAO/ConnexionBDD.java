@@ -24,8 +24,9 @@ public class ConnexionBDD{
     private static Connection connect;
 
     /**
-     * Méthode qui va nous retourner notre instance
-     * et la créer si elle n'existe pas...
+     * La méthode connection est static et retourne le parametre connect.
+     * Elle permet de retourner notre instance et la créer si elle n'existe pas.
+     *
      * @return
      */
     public static Connection getInstance(){

@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.sql.Types.NULL;
+
 
 public class SeanceDAO extends DAO<Seance> {
 
@@ -41,7 +43,14 @@ public class SeanceDAO extends DAO<Seance> {
 
     }
 
-
+    /**
+     * La méthode getSeanceById est static et retourne le parametre seance.
+     * Elle permet d'obtenir une séance grace a son Id.
+     *
+     * @param idSeance
+     *          L'Id de la séance
+     * @return
+     */
     public static Seance getSeanceById(int idSeance){
         try {
             Connection connection = ConnexionBDD.getInstance();
@@ -73,7 +82,14 @@ public class SeanceDAO extends DAO<Seance> {
 
     }
 
-
+    /**
+     * La méthode getSeancesByNumEns est static et retourne le parametre listeSeance.
+     * Elle permet d'obtenir une séance grace à un numéro enseignant.
+     *
+     * @param num_ens
+     *          Le numéro enseignant
+     * @return
+     */
     public static List<Seance> getSeancesByNumEns(String num_ens){
         try {
 
@@ -107,7 +123,14 @@ public class SeanceDAO extends DAO<Seance> {
         }
 
     }
-
+    /**
+     * La méthode getSeanceByNumEtu est static et retourne le parametre ListeSeance.
+     * Elle permet d'obtenir une séance grace à un numéro étudiant.
+     *
+     * @param num_etu
+     *          Le numéro étudiant
+     * @return
+     */
     public static List<Seance> getSeancesByNumEtu(String num_etu){
         try {
 
@@ -150,7 +173,14 @@ public class SeanceDAO extends DAO<Seance> {
     }
 
 
-
+    /**
+     * La méthode getIdSeanceByNumEtu est static et retourne le parametre seance.
+     * Elle permet d'obtenir Id d'une seance grace à un numéro étudiant.
+     *
+     * @param num_etu
+     *          Le numéro étudiant
+     * @return
+     */
     public static Seance getIdSeanceByNumEtu(String num_etu){
         try {
 
@@ -174,13 +204,36 @@ public class SeanceDAO extends DAO<Seance> {
         }
 
     }
-
-    public static Seance getIdSeanceByNumEns(String num_ens){
+    
+    /**
+     * La méthode getSeanceByDateHoraireBesoinSalleMatiereNumEns est static et retourne le parametre seance.
+     * Elle permet d'obtenir une séance grace à une date, un horaire, un besoin, une salle, une matière et un numéro enseignant.
+     *
+     * @param date
+     *          La date
+     * @param horaire
+     *          L'horaire
+     * @param besoin
+     *          Le besoin
+     * @param idSalle
+     *          L'Id de la salle
+     * @param idMat
+     *          L'Id de la matière
+     * @param num_ens
+     *          Le numéro enseignant
+     * @return
+     */
+    public static Seance getSeanceByDateHoraireBesoinSalleMatiereNumEns(String date, String horaire,String besoin,int idSalle,String num_ens){
         try {
 
             Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM participe_etudiant_seance WHERE num_etu=?");
-            statement.setString(1,num_ens);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM seance WHERE  horaire=? AND besoin=? AND idSalle=? AND num_ens=?");
+
+            //statement.setDate(1, Date.valueOf(date));
+            statement.setString(1,horaire);
+            statement.setString(2,besoin);
+            statement.setInt(3,idSalle);
+            statement.setString(4,num_ens);
             ResultSet resultSet=  statement.executeQuery();
 
 
@@ -188,8 +241,15 @@ public class SeanceDAO extends DAO<Seance> {
             Seance seance= new Seance();
             while(resultSet.next()) {
                 seance.setIdSeance(resultSet.getInt("idSeance"));
+                seance.setDate(resultSet.getString("date"));
+                seance.setHoraire(resultSet.getString("horaire"));
+                seance.setNbPlaceMax(resultSet.getInt("nbPlaceMax"));
+                seance.setNbPlaceRestante(resultSet.getInt("nbPlaceRestante"));
+                seance.setBesoin(resultSet.getString("besoin"));
+                seance.setIdSalle(resultSet.getInt("idSalle"));
+                seance.setIdMat(resultSet.getInt("idMat"));
+                seance.setNum_ens(resultSet.getString("num_ens"));
             }
-
             return seance;
 
         } catch (SQLException e) {
@@ -198,47 +258,58 @@ public class SeanceDAO extends DAO<Seance> {
         }
 
     }
-
-    public Seance creerSeance(Seance seance) {
+    
+    /**
+     * La méthode creerSeance est static et retourne le parametre seance.
+     * Elle permet de creer une séance.
+     *
+     * @param seance
+     *          La séance
+     * @return
+     */
+    public static Seance creerSeance(Seance seance) {
         try {
             Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO seance" +
-                    "(" +
-                    "date " +
-                    "horaire"+
-                    "nbPlaceMax"+
-                    "nbPlaxeRestante"+
-                    "besoin"+
-                    "idMat"+
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO seance " +
+                    "("+
+                    "date," +
+                    "horaire,"+
+                    "nbPlaceMax,"+
+                    "nbPlaceRestante,"+
+                    "besoin,"+
+                    "idSalle," +
+                    "idMat,"+
                     "num_ens"+
-                    ")" +
+                    ") " +
                     "VALUES "+
-                    "(?,?,?,?,?,?,?)");
-            statement.setString(1,seance.getDate());
+                    "(?,?,?,?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
+            int a=2;
+            statement.setDate(1, Date.valueOf(seance.getDate()));
             statement.setString(2,seance.getHoraire());
             statement.setInt(3,seance.getNbPlaceMax());
             statement.setInt(4,seance.getNbPlaceRestante());
             statement.setString(5,seance.getBesoin());
-            statement.setInt(6,seance.getIdMat());
-            statement.setString(7,seance.getNum_ens());
-
-
+            statement.setInt(6,a);
+            statement.setInt(7,seance.getIdMat());
+            statement.setString(8,seance.getNum_ens());
             statement.execute();
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return seance;
     }
 
-
-
-    public Seance getSeanceByNumEnseignant(String num_ens){
-        return null;
-    }
-
-    public Seance modifierSeanceAttributionSalle(Seance seance,int idSalle) {
+    /**
+     * La méthode modifierSeanceAttributionSalle est static et retourne le parametre seance.
+     * Elle permet de modifier une séance.
+     *
+     * @param seance
+     *          La séance
+     * @param idSalle
+     *          L'Id de la salle
+     * @return
+     */
+    public static Seance modifierSeanceAttributionSalle(Seance seance,int idSalle) {
         try {
             Connection connection = ConnexionBDD.getInstance();
             PreparedStatement statement = connection.prepareStatement("UPDATE seance" +
@@ -271,7 +342,14 @@ public class SeanceDAO extends DAO<Seance> {
     }
 
 
-
+    /**
+     * La méthode supprimerSeance n'est pas static et retourne le parametre seance.
+     * Elle permet de supprimer une séance.
+     *
+     * @param seance
+     *          La séance
+     * @return
+     */
     public Seance supprimerSeance(Seance seance){
     	 try {
              Connection connection = ConnexionBDD.getInstance();
@@ -289,133 +367,60 @@ public class SeanceDAO extends DAO<Seance> {
          return seance;
      }
 
-    
+    /**
+     * La méthode etudiantAppartientSeance est static , boolean et retourne le parametre appartient.
+     * Elle permet de vérifier si un étudiant appartient à une séance.
+     *
+     * @param idSeance
+     *          L'Id de la séance
+     * @param num_etu
+     *          Le numéro étudiant
+     * @return
+     */
+     public static boolean etudiantAppartientSeance(int idSeance, String num_etu){
+         try {
+             boolean appartient= false;
+             Connection connection = ConnexionBDD.getInstance();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM participe_etudiant_seance " +
+                     "WHERE idSeance=? " +
+                     "AND num_etu=?");
+             statement.setInt(1,idSeance);
+             statement.setString(2,num_etu);
+             ResultSet resultSet=  statement.executeQuery();
 
 
 
+             while(resultSet.next()) {
+                appartient= true;
+             }
 
-    public Seance afficheSeanceInscrit(String num_etu) {
+             return appartient;
+         } catch (SQLException e) {
+             e.printStackTrace();
+             return false;
+         }
+
+     }
+
+
+     /**
+      * La méthode decrementerPlaceSeance est static et retourne le parametre seance.
+      * Elle permet de décrémenter la place dans une séance.
+      *
+      * @param seance
+      *          La séance
+      * @return
+      */
+    public static Seance decrementerPlaceSeance(Seance seance){
         try {
             Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement;
-            statement = connection.prepareStatement("SELECT * FROM seance S " +
-                    "INNER JOIN composee_de_filiere_matiere C " +
-                    "ON S.idMat = C.idMat " +
-                    "INNER JOIN appartient_etudiant_filiere A " +
-                    "ON C.idFiliere = A.idFiliere " +
-                    "INNER JOIN etudiant E " +
-                    "ON A.num_etu = E.num_etu " +
-                    "WHERE E.num_etu=?");
-
-            statement.setString(1,num_etu);
-            ResultSet resultSet=  statement.executeQuery();
-
-            Seance seance= new Seance();
-
-            while(resultSet.next()) {
-                PreparedStatement statement2 = connection.prepareStatement("SELECT * FROM salle WHERE idSalle=?");
-                statement2.setLong(1, resultSet.getInt("idSalle"));
-                ResultSet resultSet2=  statement2.executeQuery();
-                if(resultSet2.next()) {
-                    PreparedStatement statement3 = connection.prepareStatement("SELECT * FROM matiere WHERE idMat=?");
-                    statement3.setLong(1, resultSet.getInt("idMat"));
-                    ResultSet resultSet3=  statement3.executeQuery();
-                    if(resultSet3.next()) {
-                        PreparedStatement statement4 = connection.prepareStatement("SELECT * FROM enseignant WHERE num_ens=?");
-                        statement4.setString(1, resultSet.getString("num_ens"));
-                        ResultSet resultSet4=  statement4.executeQuery();
-                        if(resultSet4.next()) {
-                            PreparedStatement statement5 = connection.prepareStatement("SELECT * FROM participe_etudiant_seance WHERE num_etu=?");
-                            statement5.setString(1,num_etu);
-                            ResultSet resultSet5=statement5.executeQuery();
-                            if(resultSet5.next()) {
-                                if(resultSet5.getInt("idSeance")==(resultSet.getInt("idSeance"))) {
-                                    System.out.println("Tutorat le " + resultSet.getString("date") + " à  " + resultSet.getString("horaire") + " | " + resultSet.getString("besoin") + " Salle:" +
-                                            resultSet2.getString("site") + resultSet2.getString("batiment") + resultSet2.getInt("etage") + resultSet2.getInt("numSalle") +
-                                            " Matière: " + resultSet3.getString("nomMat") + resultSet3.getString("sousCategorie") + " Professeur: " + resultSet4.getString("nomEns")
-                                            + resultSet4.getString("prenomEns"));
-
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            return seance;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-
-        return null;
-    }
-
-    public Seance afficheMesTutoratsEnseignant(String num_ens) {
-        try {
-            Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement;
-            statement = connection.prepareStatement("SELECT * FROM seance S WHERE num_ens=?");
-
-            statement.setString(1, num_ens);
-            ResultSet resultSet = statement.executeQuery();
-
-            Seance seance = new Seance();
-
-            while (resultSet.next()) {
-                PreparedStatement statement2 = connection.prepareStatement("SELECT * FROM salle WHERE idSalle=?");
-                statement2.setLong(1, resultSet.getInt("idSalle"));
-                ResultSet resultSet2 = statement2.executeQuery();
-                if (resultSet2.next()) {
-                    PreparedStatement statement3 = connection.prepareStatement("SELECT * FROM matiere WHERE idMat=?");
-                    statement3.setLong(1, resultSet.getInt("idMat"));
-                    ResultSet resultSet3 = statement3.executeQuery();
-                    if (resultSet3.next()) {
-                        PreparedStatement statement4 = connection.prepareStatement("SELECT * FROM enseignant WHERE num_ens=?");
-                        statement4.setString(1, resultSet.getString("num_ens"));
-                        ResultSet resultSet4 = statement4.executeQuery();
-                        if (resultSet4.next()) {
-                            System.out.println("Tutorat le " + resultSet.getString("date") + " à  " + resultSet.getString("horaire") + " | " + resultSet.getString("besoin") + " Salle:" +
-                                    resultSet2.getString("site") + resultSet2.getString("batiment") + resultSet2.getInt("etage") + resultSet2.getInt("numSalle") +
-                                    " Matière: " + resultSet3.getString("nomMat") + resultSet3.getString("sousCategorie") + " Professeur: " + resultSet4.getString("nomEns")
-                                    + resultSet4.getString("prenomEns"));
-                            PreparedStatement statement5 = connection.prepareStatement("SELECT * FROM etudiant e INNER JOIN participe_etudiant_seance p ON e.num_etu = p.num_etu INNER JOIN seance s ON p.idSeance = s.idSeance WHERE s.idSeance = ? AND s.num_ens = ?");
-                            statement5.setLong(1, resultSet.getInt("idSeance"));
-                            statement5.setString(2, num_ens);
-
-                            ResultSet resultSet5 = statement5.executeQuery();
-                            while (resultSet5.next()) {
-                                System.out.println(resultSet5.getString("num_etu") + " " + resultSet5.getString("prenom") + resultSet5.getString("nom"));
-                                System.out.println();
-                            }
-                        }
-                    }
-                }
-            }
-
-            return seance;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    
-    public Seance decrementerPlaceSeance(Seance seance){
-        try {
-            Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement = connection.prepareStatement("UPDATE seance" +
-                    "SET" +
-                    "(" +
-                    "nbPlaceRestante= ? " +
-                    ")" +
-                    "WHERE idSeance=?;");
-            statement.setInt(1,seance.getNbPlaceRestante()-1);
+            PreparedStatement statement = connection.prepareStatement("UPDATE seance " +
+                    "SET nbPlaceRestante= ? " +
+                    "WHERE idSeance=?");
+            statement.setInt(1,(seance.getNbPlaceRestante()-1));
             statement.setInt(2,seance.getIdSeance());
 
-            statement.execute();
+            statement.executeUpdate();
 
 
         } catch (SQLException e) {
@@ -424,15 +429,20 @@ public class SeanceDAO extends DAO<Seance> {
         return seance;
     }
     
-    public Seance incrementerPlaceSeance(Seance seance){
+    /**
+     * La méthode incrementerPlaceSeance est static et retourne le parametre seance.
+     * Elle permet d'incrémenter la place d'une séance.
+     *
+     * @param seance
+     *          La séance
+     * @return
+     */
+    public static Seance incrementerPlaceSeance(Seance seance){
         try {
             Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement = connection.prepareStatement("UPDATE seance" +
-                    "SET" +
-                    "(" +
-                    "nbPlaceRestante= ? " +
-                    ")" +
-                    "WHERE idSeance=?;");
+            PreparedStatement statement = connection.prepareStatement("UPDATE seance " +
+                    "SET nbPlaceRestante= ? " +
+                    "WHERE idSeance=?");
             if(seance.getNbPlaceRestante()+1<seance.getNbPlaceMax()) {
             	statement.setInt(1,seance.getNbPlaceRestante()+1);}
             else { 
@@ -440,6 +450,36 @@ public class SeanceDAO extends DAO<Seance> {
             }
             statement.setInt(2,seance.getIdSeance());
 
+            statement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seance;
+    }
+
+    /**
+     * La méthode ajouterEtudiantSeance est static et retourne le parametre seance.
+     * Elle permet d'ajouter un étduaint à une séance.
+     *
+     * @param seance
+     *          La séance
+     * @param num_etu
+     *          Le numéro étudiant
+     * @return
+     */
+    public static Seance ajouterEtudiantSeance(Seance seance, String num_etu){
+        try {
+            Connection connection = ConnexionBDD.getInstance();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO participe_etudiant_seance" +
+                    "( idSeance, " +
+                    "num_etu )" +
+                    "VALUES" +
+                    "(?,?)" );
+            statement.setInt(1,seance.getIdSeance());
+            statement.setString(2,num_etu);
+
             statement.execute();
 
 
@@ -448,105 +488,125 @@ public class SeanceDAO extends DAO<Seance> {
         }
         return seance;
     }
-    
 
-    
-      public void ajouterMatFormulaire(String num_ens, ComboBox listMat) throws SQLException {
+    /**
+     * La méthode demissionEtudiantSeance est static et retourne le parametre seance.
+     * Elle permet de faire démissioner un étudiant d'une séance.
+     *
+     * @param seance
+     *          La séance
+     * @param num_etu
+     *          Le numéro étudiant
+     * @return
+     */
+    public static Seance demissionEtudiantSeance(Seance seance, String num_etu){
+        try {
             Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement;
-            statement = connection.prepareStatement("SELECT * FROM matiere m INNER JOIN enseigne_matiere_enseignant e ON m.idMat = e.idMat WHERE e.num_ens = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM participe_etudiant_seance WHERE idSeance=? AND num_etu=?");
+            statement.setInt(1,seance.getIdSeance());
+            statement.setString(2,num_etu);
 
-            statement.setString(1,num_ens);
+            statement.execute();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seance;
+    }
+
+
+
+    public static Seance ajouterTuteurSeance(Seance seance, int idTuteur){
+        try {
+            Connection connection = ConnexionBDD.getInstance();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO s_inscrit_tuteur_seance" +
+                    "( idSeance, " +
+                    "idTuteur )" +
+                    "VALUES" +
+                    "(?,?)" );
+            statement.setInt(1,seance.getIdSeance());
+            statement.setInt(2,idTuteur);
+
+            statement.execute();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seance;
+    }
+
+
+
+    public static List<Seance> getSeancesByidTuteur(int idTuteur){
+        try {
+
+            Connection connection = ConnexionBDD.getInstance();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM seance S " +
+                    "INNER JOIN composee_de_filiere_matiere C " +
+                    "ON S.idMat = C.idMat " +
+                    "INNER JOIN appartient_etudiant_filiere A " +
+                    "ON C.idFiliere = A.idFiliere " +
+                    "INNER JOIN etudiant E " +
+                    "ON A.num_etu = E.num_etu " +
+                    "INNER JOIN est_tuteur_etudiant T " +
+                    "ON T.num_etu=E.num_etu " +
+                    "WHERE T.idTuteur=?");
+            statement.setInt(1,idTuteur);
             ResultSet resultSet=  statement.executeQuery();
 
 
+            List<Seance> ListeSeance= new ArrayList<Seance>();
+
             while(resultSet.next()) {
-            	int index = listMat.getItems().size();
-            	listMat.getItems().add(index, resultSet.getString("sousCategorie"));
+                Seance seance= new Seance();
+                seance.setIdSeance(resultSet.getInt("idSeance"));
+                seance.setDate(resultSet.getString("date"));
+                seance.setHoraire(resultSet.getString("horaire"));
+                seance.setNbPlaceMax(resultSet.getInt("nbPlaceMax"));
+                seance.setNbPlaceRestante(resultSet.getInt("nbPlaceRestante"));
+                seance.setBesoin(resultSet.getString("besoin"));
+                seance.setIdSalle(resultSet.getInt("idSalle"));
+                seance.setIdMat(resultSet.getInt("idMat"));
+                seance.setNum_ens(resultSet.getString("num_ens"));
+                ListeSeance.add(seance);
             }
-    }
-    
-    public void creerSeance(String num_ens, DatePicker datePickerSeance, ComboBox listMat, TextField textNbEtuMax, 
-    		TextField textBesoin, TextField textHeure, Label erreur, RadioButton rbInfo, RadioButton rbTp, Button buttonCreerSeance) throws SQLException  {
-    	
-    	try {
-    	 Connection connection = ConnexionBDD.getInstance();
-         PreparedStatement statement1;
-         statement1 = connection.prepareStatement("SELECT * FROM matiere WHERE sousCategorie = ?");
 
-         String mat = (String) listMat.getValue();
-         statement1.setString(1,mat);
-         ResultSet resultSet1=  statement1.executeQuery();
-         
-         
-         
-         if(resultSet1.next()) {
-        	 
+            return ListeSeance;
 
-    	 String sql = "insert into seance (date,horaire,nbPlaceMax,nbPlaceRestante,besoin,idSalle,idMat,num_ens)"
-    		        + " values (?, ?, ?, ?, ?, ?, ?, ?)";
-    	 
-         PreparedStatement preparedStmt = connection.prepareStatement(sql);
-         LocalDate data=datePickerSeance.getValue(); 
-         preparedStmt.setDate(1, Date.valueOf(data)); 
-         
-         preparedStmt.setString (2, textHeure.getText());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
 
-         int nbplace = Integer.parseInt(textNbEtuMax.getText());
-         preparedStmt.setInt (3, nbplace);
-         preparedStmt.setInt (4, nbplace);
-         
-         preparedStmt.setString (5, textBesoin.getText());
-
-         
-         if(rbTp.isSelected()) {
-             PreparedStatement statement2;
-             statement2 = connection.prepareStatement("SELECT * FROM salle WHERE tp = 1");
-             ResultSet resultSet2=  statement2.executeQuery();
-             
-             if(resultSet2.next()) {
-            	 preparedStmt.setInt(6, resultSet2.getInt("idSalle")); }
-             
-         }else if (rbInfo.isSelected()) {
-             PreparedStatement statement3;
-             statement3 = connection.prepareStatement("SELECT * FROM salle WHERE info = 1");
-             ResultSet resultSet3=  statement3.executeQuery();
-             
-             if(resultSet3.next()) {
-            	 preparedStmt.setInt(6, resultSet3.getInt("idSalle")); }
-         }else {
-             PreparedStatement statement4;
-             statement4 = connection.prepareStatement("SELECT * FROM salle WHERE info = 0 AND tp = 0");
-             ResultSet resultSet4=  statement4.executeQuery(); 
-             
-             if(resultSet4.next()) {
-            	 preparedStmt.setInt(6, resultSet4.getInt("idSalle")); }
-         }
-         
-         
-         int idmattt = Integer.parseInt(resultSet1.getString("idMat"));
-         preparedStmt.setInt (7, idmattt);
-
-         preparedStmt.setString (8, num_ens);
-         
-         preparedStmt.execute();
-         
- 		 Stage interfaceCS = (Stage) buttonCreerSeance.getScene().getWindow();
- 		 interfaceCS.close();
- 		 
- 		Alert a = new Alert(AlertType.NONE, "S�ance cr�e avec succ�s!"); 
- 		a.setAlertType(AlertType.CONFIRMATION);
- 		a.show();
-         
-         }
-    	}catch(Exception e) {
-    		erreur.setText("Erreur veuillez r�essayer !");
-    	}
-         
-         
-		
-         
     }
 
+
+
+    public static boolean tuteurAppartientSeance(int idSeance, int idTuteur){
+        try {
+            boolean appartient= false;
+            Connection connection = ConnexionBDD.getInstance();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM s_inscrit_tuteur_seance " +
+                    "WHERE idSeance=? " +
+                    "AND idTuteur=?");
+            statement.setInt(1,idSeance);
+            statement.setInt(2,idTuteur);
+            ResultSet resultSet=  statement.executeQuery();
+
+
+
+            while(resultSet.next()) {
+                appartient= true;
+            }
+
+            return appartient;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 }
 

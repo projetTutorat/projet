@@ -1,7 +1,9 @@
 package InterfaceEnseignant;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import Controleur.ControleurPersonne;
 import Controleur.ControleurSeance;
@@ -10,17 +12,28 @@ import DAO.SeanceDAO;
 import InterfaceConnexion.interfaceConnexionControleur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TreeView;
 import javafx.stage.Stage;
-
-public class interfaceEnseignantControleur {
+/**
+ * class du controlleur de l'interface enseignant.
+ */
+public class interfaceEnseignantControleur implements Initializable  {
 	
 	@FXML private Button SeDeconnecter;
 
-	@FXML private TreeView treeViewAfficherSeance;
+	@FXML private TreeView<String > TreeViewSeance;
 	
+    /**
+     * La méthode Deconnect n'est pas static et elle ne retourne rien.
+     * Elle permet de lancer la méthode SeDeconnecter ce qui déconnecte l'utilisateur et le renvois a l'interface Connexion.
+     *
+     * @param actionEvent
+     *          actionEvent
+     * @throws IOException
+     */
 	
 	public void Deconnect(ActionEvent actionEvent) throws  IOException {
 
@@ -28,8 +41,15 @@ public class interfaceEnseignantControleur {
 		ControleurPersonne.deconnect(SeDeconnecter);
     }
 	
-
-    public void CreerUneSeance(ActionEvent actionEvent) throws ClassNotFoundException, SQLException, IOException {
+    /**
+     * La méthode CreerUneSeance n'est pas static et elle ne retourne rien.
+     * Elle permet de lancer l'interface CreerSeance
+     *
+     * @param actionEvent
+     *          actionEvent
+     * @throws IOException
+     */
+    public void CreerUneSeance(ActionEvent actionEvent) throws  IOException {
     	
        Stage interfaceCS = new Stage();
        new interfaceCreerSeance().start(interfaceCS);
@@ -37,18 +57,18 @@ public class interfaceEnseignantControleur {
         
     	
     }
-    
-    public void getListMesS�ances(ActionEvent actionEvent) throws ClassNotFoundException, SQLException, IOException {
-    	
- 
-    	
+
+    public void getListMesSeances(ActionEvent actionEvent) {
+    	ControleurSeance.afficherMesTutoratsEnseignant(interfaceConnexionControleur.Instance.getNum(),TreeViewSeance);
+        System.out.println(interfaceConnexionControleur.Instance.getNum());
+
+
     }
 
 
-    public void getListMesSeances(ActionEvent actionEvent) throws ClassNotFoundException, SQLException, IOException {
-
-        ControleurSeance.afficherMesTutoratsEnseignant(interfaceConnexionControleur.Instance.getNum(), treeViewAfficherSeance);
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControleurSeance.afficherMesTutoratsEnseignant(interfaceConnexionControleur.Instance.getNum(),TreeViewSeance);
+        System.out.println(interfaceConnexionControleur.Instance);
     }
-
 }

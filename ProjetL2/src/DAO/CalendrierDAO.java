@@ -8,6 +8,9 @@ import Modele.Seance;
 import java.sql.*;
 
 
+/**
+ * Class DAO sur calendrier
+ */
 public class CalendrierDAO extends  DAO<Calendrier>{
 
 
@@ -33,6 +36,14 @@ public class CalendrierDAO extends  DAO<Calendrier>{
     }
 
 
+    /**
+     * La méthode ajouterSeanceCalendrier n'est pas static et retourne le parametre calendrier.
+     * Elle permet d'ajouter une séance sur le calendrier des séances.
+     *
+     * @param calendrier
+     *
+     * @return
+     */
     public Calendrier ajouterSeanceCalendrier(Calendrier calendrier ) {
         try {
             Connection connection = ConnexionBDD.getInstance();
@@ -64,7 +75,14 @@ public class CalendrierDAO extends  DAO<Calendrier>{
     }
 
 
-
+    /**
+     * La méthode getCalendrierById n'est pas static et retourne le parametre calendrier.
+     * Elle permet d'obtenir l'idCalendrier.
+     *
+     * @param idCalendrier
+     *          L'id du calendrier
+     * @return
+     */
     public Calendrier getCalendrierById(int idCalendrier){
         try {
 
@@ -92,6 +110,14 @@ public class CalendrierDAO extends  DAO<Calendrier>{
         return null;
     }
 
+    /**
+     * La méthode Calendrier n'est pas static et retourne le parametre calendrier.
+     * Elle permet d'obtenir le calendrier grace a une seance.
+     *
+     * @param seance
+     *          La séance
+     * @return
+     */
         //modifier les substring
     public Calendrier getCalendrierBySeance(Seance seance){
         try {
@@ -131,9 +157,13 @@ public class CalendrierDAO extends  DAO<Calendrier>{
     }
 
 
-
-
-
+    /**
+     * La méthode afficherCalendrier est static et ne retourne rien.
+     * Elle permet d'afficher le calendrier.
+     *
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void afficherCalendrier() throws ClassNotFoundException, SQLException {
         String url = "jdbc:mysql://localhost/projet+l2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String login = "root";

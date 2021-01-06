@@ -33,7 +33,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TreeView fx:id="TreeViewTutoratsDisponibles" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="180.0" prefWidth="394.0" />
+                        <TreeView fx:id="TreeViewTutoratsDisponibles" onContextMenuRequested="#inscriptionTutorat" onMouseClicked="#inscriptionTutorat" prefHeight="180.0" prefWidth="394.0" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -41,7 +41,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TreeView fx:id="TreeViewTutoratsInscrits" prefHeight="200.0" prefWidth="394.0" />
+                        <TreeView fx:id="TreeViewTutoratsInscrits" onContextMenuRequested="#desinscriptionTutorat" onMouseClicked="#desinscriptionTutorat" prefHeight="200.0" prefWidth="394.0" />
                      </children></AnchorPane>
             </content>
           </TitledPane>

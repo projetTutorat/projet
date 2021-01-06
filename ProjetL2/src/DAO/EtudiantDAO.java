@@ -30,8 +30,14 @@ public class EtudiantDAO extends DAO<Etudiant> {
     }
 
 
-
-
+    /**
+     * La méthode getEtudiantById est static et retourne le parametre etudiant
+     * Elle permet d'obtenir un étudiant grace à son id.
+     *
+     * @param num
+     *          Le numéro de l'Id
+     * @return
+     */
     public static Etudiant getEtudiantById(String num){
         try {
 
@@ -62,6 +68,15 @@ public class EtudiantDAO extends DAO<Etudiant> {
     }
 
 
+    /**
+     * La méthode getEtudiantsByIdSeance est static et retourne le parametre listeEtudiant.
+     *
+     * @param idSeance
+     *          L'Id de la séance
+     * @param num_ens
+     *          Le numéro enseignant
+     * @return
+     */
     public static List<Etudiant> getEtudiantsByIdSeance(int idSeance,String num_ens){
         try {
 
@@ -96,18 +111,19 @@ public class EtudiantDAO extends DAO<Etudiant> {
     }
 
 
-
-
-
-
-    public Etudiant modifierAbsenceEtudiant(Etudiant etudiant){
+    /**
+     * La méthode modifierAbsenceEtudiant n'est pa static et retourne le parametre etudiant.
+     * Elle permet de modifier le nombre d'absence d'un etudiant.
+     *
+     * @param etudiant
+     *          L'étudiant
+     * @return
+     */
+    public static Etudiant modifierAbsenceEtudiant(Etudiant etudiant){
         try {
             Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement = connection.prepareStatement("UPDATE etudiant" +
-                    "SET" +
-                    "(" +
-                    "nombreAbsence= ? " +
-                    ")" +
+            PreparedStatement statement = connection.prepareStatement("UPDATE etudiant " +
+                    "SET nombreAbsence= ? " +
                     "WHERE num_etu=?;");
             statement.setInt(1,etudiant.getNombre_absence()+1);
             statement.setString(2,etudiant.getNumero_identification());
@@ -122,8 +138,18 @@ public class EtudiantDAO extends DAO<Etudiant> {
     }
 
 
+    /**
+     * La méthode ajouterEtudiantSeance est static et retourne le parametre etudiant.
+     * Elle permet d'ajouter un étudiant à une séance.
+     *
+     * @param etudiant
+     *          L'étudiant
+     * @param idSeance
+     *          L'Id de la séance
+     * @return
+     */
 //lors de l'appel de cette methode, appeler methode 'decrementerPlaceSeance'
-    public Etudiant ajouterEtudiantSeance(Etudiant etudiant,int idSeance){
+    public static Etudiant ajouterEtudiantSeance(Etudiant etudiant,int idSeance){
 
         try {
             Connection connection = ConnexionBDD.getInstance();
@@ -145,8 +171,18 @@ public class EtudiantDAO extends DAO<Etudiant> {
         return etudiant;
     }
 
+    /**
+     * La méthode demissionEtudiantSeance n'est pas static et retourne le parametre etudiant.
+     * Elle permet de faire démissioner un étudiant d'une séance.
+     *
+     * @param etudiant
+     *          L'étudiant
+     * @param idSeance
+     *          L'Id de la séance
+     * @return
+     */
 //lors de l'appel de cette methode, appeler methode 'incrementerPlaceSeance'
-    public Etudiant demissionEtudiantSeance(Etudiant etudiant, int idSeance){
+    public static Etudiant demissionEtudiantSeance(Etudiant etudiant, int idSeance){
         try {
             Connection connection = ConnexionBDD.getInstance();
             PreparedStatement statement = connection.prepareStatement("DELETE FROM participe_etudiant_seance" +
@@ -168,7 +204,9 @@ public class EtudiantDAO extends DAO<Etudiant> {
 
 
 
-    public Etudiant associerEtudiantFiliere(){
+
+
+    public Etudiant associerEtudiantFiliere(int idFiliere){
         return null;
     }
 

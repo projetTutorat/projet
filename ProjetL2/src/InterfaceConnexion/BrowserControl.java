@@ -2,9 +2,19 @@ package InterfaceConnexion;
 
 import java.io.IOException;
 
+/**
+ * Class pour le mot de passe oublié
+ */
 public class BrowserControl
 {
 
+    /**
+     * La méthode displayURL est static et ne retourne rien.
+     * Elle permet de lancer le porcess du cmd
+     *
+     * @param url
+     *          L'url
+     */
     public static void displayURL(String url)
     {
         boolean windows = isWindowsPlatform();
@@ -47,7 +57,12 @@ public class BrowserControl
             System.err.println("Caught: " + x);
         }
     }
-   
+    /**
+     * La méthode isWindowsPlatform est static et retourne un boolean.
+     * Elle permet de vérifier si l'os de l'utilisateur est bien Windows.
+     *
+     * @return
+     */
     public static boolean isWindowsPlatform()
     {
         String os = System.getProperty("os.name");
@@ -56,7 +71,12 @@ public class BrowserControl
         else
             return false;
     }
-   
+    /**
+     * La méthode main est static et ne retourne rien.
+     *
+     * @param args
+     *          L'argument
+     */
     public static void main(String[] args)
     {
         displayURL("http://www.javaworld.com");

@@ -9,20 +9,36 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
-
 import DAO.PersonneDAO;
 
+/**
+ * Class ppur l'interface de connexion
+ */
 public class interfaceConnexion extends Application {
-
+    /**
+     * La méthode main est static et ne retourne rien.
+     * Elle éxécute l'interface.
+     *
+     * @param args
+     *          L'argument
+     */
     public static void main(String[] args) {
     	// On ex�cute l'interface
         launch(args);
     }
-
+    
+    /**
+     * La méthode start n'est pas static et elle ne retourne rien.
+     * Elle permet de lancer l'interfaceConnexion fxml en définissant le primaryStage.
+     *
+     * @param primaryStage
+     *          Le primaryStage (premier stage)
+     * @throws IOException
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
     	
+
     	primaryStage.getIcons().add(new Image("favicon_univ.png"));
     	
     	// On associe l'interface interfaceConnexion � son interface FXML

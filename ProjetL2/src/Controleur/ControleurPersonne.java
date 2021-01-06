@@ -19,10 +19,28 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-
+/**
+ * Classe controleur personne
+ */
 public class ControleurPersonne {
 
-    public static void connect(TextField textId, TextField textMdp, Label message, Button buttonCo) throws IOException, SQLException, ClassNotFoundException {
+    /**
+     * La méthode connect est static et ne retourne rien.
+     * Elle permet de se connecter à l'application à partir d'un Id et d'un mot de passe.
+     *
+     * @param textId
+     *          Le textField pour rentrer l'Id de l'utilisateur
+     * @param textMdp
+     *          Le textField pour rentrer le mot de passe de l'utilisateur
+     * @param message
+     *          Renvois un message d'erreur si le formualire est mal remplit
+     * @param buttonCo
+     *          Le Button pour lancer la connection à partir du formulaire remplit
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws SQLException Si les éléments ne sont pas trouvés dans la base
+     */
+    public static void connect(TextField textId, TextField textMdp, Label message, Button buttonCo) throws IOException, ClassNotFoundException, SQLException {
 
 
         Etudiant etudiant = EtudiantDAO.getEtudiantById(textId.getText());
@@ -80,8 +98,15 @@ public class ControleurPersonne {
     }
 
 
-
-
+    /**
+     * La méthode deconnect est static et ne retourne rien.
+     * Elle permet de déconnecter un utilisateur de l'application et le renvoyer a l'interface connexion.
+     *
+     * @param SeDeconnecter
+     *          Le Button se deconnecter pour lancer la déconnexion
+     * @throws IOException
+     */
+    
     public static void deconnect(Button SeDeconnecter) throws IOException {
         //Fermeture interface actuelle
         Stage interfaceI = (Stage) SeDeconnecter.getScene().getWindow();
