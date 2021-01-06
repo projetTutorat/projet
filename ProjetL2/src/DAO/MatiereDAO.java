@@ -71,7 +71,7 @@ public class MatiereDAO extends DAO<Matiere> {
      *          La sous-catégorie de la matière
      * @return
      */
-    public Matiere getMatiereByNomAndSousCategorie(String nomMat, String sousCategorie){
+    public static Matiere getMatiereByNomAndSousCategorie(String nomMat, String sousCategorie){
         try {
 
             Connection connection = ConnexionBDD.getInstance();
