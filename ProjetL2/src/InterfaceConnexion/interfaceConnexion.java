@@ -37,10 +37,8 @@ public class interfaceConnexion extends Application  {
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-    	
-
     	primaryStage.getIcons().add(new Image("favicon_univ.png"));
-    	
+
     	// On associe l'interface interfaceConnexion à son interface FXML
         Parent root = FXMLLoader.load(getClass().getResource("InterfaceConnexion.fxml"));
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="Main" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceScolarite.interfaceScolariteControleur">
+
+    <Button fx:id="SeDeconnecter" layoutX="480.0" layoutY="15.0" mnemonicParsing="false" onAction="#Deconnect" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 10;" text="Se déconnecter" textAlignment="CENTER">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor></Button>
+   <Accordion layoutX="129.0" layoutY="99.0" prefHeight="47.0" prefWidth="342.0" />
+   <Accordion layoutX="99.0" layoutY="73.0">
+     <panes>
+       <TitledPane animated="false" text="Tutorats ayant besoin d'une salle">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <TreeView fx:id="TreeViewTutoratsSansSalle" onContextMenuRequested="#attributionSalle" onMouseClicked="#attributionSalle" prefHeight="180.0" prefWidth="403.0" />
+                  </children>
+               </AnchorPane>
+         </content>
+       </TitledPane>
+       <TitledPane animated="false" text="Tutorats à modifier">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <TreeView fx:id="TreeViewTutoratsAModifier" layoutY="-1.0" prefHeight="181.0" prefWidth="403.0" />
+                  </children>
+               </AnchorPane>
+         </content>
+       </TitledPane>
+       <TitledPane animated="false" prefHeight="206.0" prefWidth="403.0" text="Tutorats à supprimer">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <TreeView fx:id="TreeViewTutoratsASupprimer" layoutX="-1.0" layoutY="-3.0" prefHeight="186.0" prefWidth="403.0" />
+                  </children>
+               </AnchorPane>
+         </content>
+       </TitledPane>
+     </panes>
+   </Accordion>
+
+</AnchorPane>

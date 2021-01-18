@@ -11,8 +11,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="268.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceConnexion.interfaceConnexionControleur">
-   <Button fx:id="buttonCo" layoutX="97.0" layoutY="258.0" mnemonicParsing="false" onAction="#Login" text="Connexion" textAlignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="268.0" style="-fx-background-color: #1d1d1d;" stylesheets="@../view/DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceConnexion.interfaceConnexionControleur">
+   <Button fx:id="buttonCo" layoutX="75.0" layoutY="254.0" mnemonicParsing="false" onAction="#Login" text="Connexion" textAlignment="CENTER">
       <font>
          <Font name="System Bold" size="12.0" />
       </font>
@@ -20,19 +20,28 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <TextField fx:id="textId" layoutX="61.0" layoutY="130.0" promptText="Identifiant" />
-   <Hyperlink fx:id="forgotMdp" layoutX="77.0" layoutY="201.0" text="mot de passe oublié" onAction="#ChangePswd" />
-   <RadioButton fx:id="stayCo" ellipsisString="" layoutX="91.0" layoutY="233.0" mnemonicParsing="false" text="Rester connecté" textAlignment="CENTER">
+   <TextField fx:id="textId" layoutX="62.0" layoutY="85.0" prefHeight="37.0" prefWidth="149.0" promptText="Identifiant">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></TextField>
+   <Hyperlink fx:id="forgotMdp" layoutX="76.0" layoutY="183.0" onAction="#ChangePswd" text="mot de passe oublié" />
+   <RadioButton fx:id="stayCo" ellipsisString="" layoutX="92.0" layoutY="206.0" mnemonicParsing="false" text="Rester connecté" textAlignment="CENTER">
       <font>
          <Font name="System Bold" size="9.0" />
       </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
    </RadioButton>
    <TextFlow layoutX="-193.0" layoutY="170.0" prefHeight="200.0" prefWidth="200.0" />
-   <Label layoutX="77.0" layoutY="74.0" text="Connexion">
+   <Label layoutX="101.0" layoutY="48.0" text="Connexion">
       <font>
          <Font name="System Bold" size="22.0" />
       </font>
    </Label>
-   <PasswordField fx:id="textMdp" layoutX="61.0" layoutY="170.0" prefHeight="25.0" prefWidth="149.0" promptText="Mot de passe" />
+   <PasswordField fx:id="textMdp" layoutX="62.0" layoutY="140.0" prefHeight="25.0" prefWidth="149.0" promptText="Mot de passe">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></PasswordField>
    <Label fx:id="message" layoutX="61.0" layoutY="296.0" textFill="RED" />
 </AnchorPane>

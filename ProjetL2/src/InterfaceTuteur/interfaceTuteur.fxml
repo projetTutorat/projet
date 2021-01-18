@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="Main" prefHeight="670.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceTuteur.interfaceTuteurControleur">
+<AnchorPane fx:id="Main" prefHeight="670.0" prefWidth="966.0" style="-fx-background-color: #1d1d1d;" stylesheets="@../view/DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceTuteur.interfaceTuteurControleur">
    <children>
-      <Button fx:id="SeDeconnecter" layoutX="833.0" layoutY="19.0" mnemonicParsing="false" onAction="#Deconnect" text="Se deconnecter" />
-      <Button fx:id="ModeEtudiant" layoutX="833.0" layoutY="52.0" mnemonicParsing="false" onAction="#ModeEtudiant" prefHeight="25.0" prefWidth="98.0" text="Mode Etudiant" />
+       <Label fx:id="Bonjour" layoutX="23.0" layoutY="14.0" prefHeight="33.0" prefWidth="71.0" text="Bonjour !" />
+      <Button fx:id="SeDeconnecter" layoutX="790.0" layoutY="19.0" mnemonicParsing="false" onAction="#Deconnect" prefHeight="33.0" prefWidth="160.0" style="-fx-border-radius: 10;" text="Se deconnecter">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="ModeEtudiant" layoutX="790.0" layoutY="64.0" mnemonicParsing="false" onAction="#ModeEtudiant" prefHeight="33.0" prefWidth="160.0" style="-fx-border-radius: 10;" text="Mode Etudiant">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
        <Accordion layoutX="197.0" layoutY="97.0" prefHeight="261.0" prefWidth="572.0">
            <panes>
-               <TitledPane fx:id="TutoratsDisponibles" animated="true" text="Tutorats Inscrits">
+               <TitledPane fx:id="TutoratsDisponibles" animated="true" stylesheets="@../view/DarkTheme.css" text="Tutorats Inscrits">
                    <content>
                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                                <TreeView fx:id="treeViewTutoratsInscritsTuteur" prefHeight="212.0" prefWidth="572.0" />
                            </children></AnchorPane>
                    </content>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="table-view" />
+                  <String fx:value="label" />
+               </styleClass>
                </TitledPane>
                <TitledPane fx:id="TutoratsInscrits" animated="true" prefHeight="222.0" prefWidth="488.0" text="Tutorats Disponibles">
                    <content>
@@ -24,18 +40,25 @@
                                <TreeView fx:id="treeViewTutoratsDisponiblesTuteur" onContextMenuRequested="#inscriptionTutoratTuteur" onMouseClicked="#inscriptionTutoratTuteur" prefHeight="209.0" prefWidth="572.0" />
                            </children></AnchorPane>
                    </content>
+               <styleClass>
+                  <String fx:value="table-view" />
+                  <String fx:value="label" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                </TitledPane>
            </panes>
        </Accordion>
-      <TableView layoutX="219.0" layoutY="447.0" prefHeight="200.0" prefWidth="528.0">
+      <TableView layoutX="32.0" layoutY="446.0" prefHeight="200.0" prefWidth="903.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
+          <TableColumn prefWidth="129.0" text="    Lundi" />
+          <TableColumn prefWidth="129.0" text="   Mardi" />
+            <TableColumn minWidth="0.0" prefWidth="129.0" text=" Mercredi" />
+            <TableColumn prefWidth="129.0" text="    Jeudi" />
+            <TableColumn prefWidth="129.0" text=" Vendredi" />
+            <TableColumn prefWidth="129.0" text="  Samedi" />
+            <TableColumn prefWidth="129.0" text="Dimanche" />
         </columns>
       </TableView>
    </children>

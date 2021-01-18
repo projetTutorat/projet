@@ -45,7 +45,7 @@ public class ControleurSeance  {
 
             Enseignant enseignant = EnseignantDAO.getEnseignantById(seance.getNum_ens());
 
-            if (SeanceDAO.etudiantAppartientSeance(seance.getIdSeance(),num_etu)==false) {
+            if (SeanceDAO.etudiantAppartientSeance(seance.getIdSeance(),num_etu)==false && seance.getIdSalle()!=0) {
 
                 TreeItem treeItemSeanceDisponible = new TreeItem("Tutorat le " + seance.getDate() + " a  " + seance.getHoraire() +"\n"+
                         "   Besoin: " +
@@ -91,7 +91,7 @@ public class ControleurSeance  {
 
             Enseignant enseignant = EnseignantDAO.getEnseignantById(seance.getNum_ens());
 
-            if (SeanceDAO.etudiantAppartientSeance(seance.getIdSeance(),num_etu)==true) {
+            if (SeanceDAO.etudiantAppartientSeance(seance.getIdSeance(),num_etu)==true && seance.getIdSalle()!=0) {
 
                 TreeItem treeItemSeanceInscrit = new TreeItem("Tutorat le " + seance.getDate() + " a  " + seance.getHoraire() +"\n"+
                         "   Besoin: " +
@@ -132,7 +132,7 @@ public class ControleurSeance  {
 
             Enseignant enseignant = EnseignantDAO.getEnseignantById(seance.getNum_ens());
 
-            if ((seance.getIdSeance()) != 0 ) {
+            if ((seance.getIdSeance()) != 0 && seance.getIdSalle()!=0 ) {
                 TreeItem treeItemSeance= new TreeItem("Tutorat le " + seance.getDate() + " a  " + seance.getHoraire() +"\n"+
                         "   Besoin: " +
                         seance.getBesoin() +"\n"+
@@ -236,7 +236,6 @@ public class ControleurSeance  {
 
                 SeanceDAO.creerSeance(seance);
 
-                System.out.println(seance.toString());
 
 
                 Stage interfaceCS = (Stage) buttonCreerSeance.getScene().getWindow();
@@ -281,7 +280,7 @@ public class ControleurSeance  {
 
             Enseignant enseignant = EnseignantDAO.getEnseignantById(seance.getNum_ens());
 
-            if (SeanceDAO.tuteurAppartientSeance(seance.getIdSeance(),tuteur.getIdTuteur())==false) {
+            if (SeanceDAO.tuteurAppartientSeance(seance.getIdSeance(),tuteur.getIdTuteur())==false && seance.getIdSalle()!=0) {
 
                 TreeItem treeItemSeanceDisponible = new TreeItem("Tutorat le " + seance.getDate() + " a  " + seance.getHoraire() +"\n"+
                         "   Besoin: " +
@@ -325,7 +324,43 @@ public class ControleurSeance  {
 
             Enseignant enseignant = EnseignantDAO.getEnseignantById(seance.getNum_ens());
 
-            if (SeanceDAO.tuteurAppartientSeance(seance.getIdSeance(),tuteur.getIdTuteur())==true) {
+            if (SeanceDAO.tuteurAppartientSeance(seance.getIdSeance(),tuteur.getIdTuteur())==true && seance.getIdSalle()!=0) {
+
+                TreeItem treeItemSeanceInscrit = new TreeItem("Tutorat le " + seance.getDate() + " a  " + seance.getHoraire() +"\n"+
+                        "   Besoin: " +
+                        seance.getBesoin() +"\n"+
+                        "   Salle: " +
+                        salle.getSite()+ " " + salle.getBatiment()+ " " + salle.getEtage()+" " + salle.getNumeroSalle() +"\n"+
+                        "   Matiere: " +
+                        matiere.getNomMatiere()+" " + matiere.getSousCategorie() +"\n"+
+                        "   Professeur: " + enseignant.getNom() + " " +enseignant.getPrenom());
+                afficherSeanceInscrit.getChildren().add(treeItemSeanceInscrit);
+            }
+        }
+    }
+
+
+
+
+
+    public static void afficheSeanceSansSalle(TreeView treeView) {
+        List<Seance> listeSeance = SeanceDAO.getSeancesBySalleManquante();
+
+        TreeItem afficherSeanceInscrit = new TreeItem("Seance Sans Salle");
+
+        treeView.setRoot(afficherSeanceInscrit);
+        treeView.setShowRoot(false);
+
+
+        for (Seance seance : listeSeance) {
+            Matiere matiere = MatiereDAO.getMatiereById(seance.getIdMat());
+
+            Salle salle = SalleDAO.getSalleById(seance.getIdSalle());
+
+            Enseignant enseignant = EnseignantDAO.getEnseignantById(seance.getNum_ens());
+
+
+            if (seance.getIdSalle()==0) {
 
                 TreeItem treeItemSeanceInscrit = new TreeItem("Tutorat le " + seance.getDate() + " a  " + seance.getHoraire() +"\n"+
                         "   Besoin: " +

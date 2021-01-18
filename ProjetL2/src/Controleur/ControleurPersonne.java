@@ -7,6 +7,7 @@ import InterfaceConnexion.interfaceConnexion;
 import InterfaceEnseignant.interfaceEnseignant;
 import InterfaceEtudiant.interfaceEtudiant;
 import InterfaceTuteur.interfaceTuteur;
+import InterfaceScolarite.interfaceScolarite;
 import Modele.Enseignant;
 import Modele.Etudiant;
 import Modele.Tuteur;
@@ -27,17 +28,13 @@ public class ControleurPersonne {
      * La méthode connect est static et ne retourne rien.
      * Elle permet de se connecter à l'application à partir d'un Id et d'un mot de passe.
      *
-     * @param textId
-     *          Le textField pour rentrer l'Id de l'utilisateur
-     * @param textMdp
-     *          Le textField pour rentrer le mot de passe de l'utilisateur
-     * @param message
-     *          Renvois un message d'erreur si le formualire est mal remplit
-     * @param buttonCo
-     *          Le Button pour lancer la connection à partir du formulaire remplit
+     * @param textId   Le textField pour rentrer l'Id de l'utilisateur
+     * @param textMdp  Le textField pour rentrer le mot de passe de l'utilisateur
+     * @param message  Renvois un message d'erreur si le formualire est mal remplit
+     * @param buttonCo Le Button pour lancer la connection à partir du formulaire remplit
      * @throws IOException
      * @throws ClassNotFoundException
-     * @throws SQLException Si les éléments ne sont pas trouvés dans la base
+     * @throws SQLException           Si les éléments ne sont pas trouvés dans la base
      */
     public static void connect(TextField textId, TextField textMdp, Label message, Button buttonCo) throws IOException, ClassNotFoundException, SQLException {
 
@@ -55,7 +52,7 @@ public class ControleurPersonne {
                 Stage interfaceCo = (Stage) buttonCo.getScene().getWindow();
                 interfaceCo.close();
                 // On vérifie si le numéro étudiant est existant dans la table est_tuteur_étudiant
-                if (tuteur.getNumero_identification()!=null) {
+                if (tuteur.getNumero_identification() != null) {
                     //On ouvre l'interface tuteur
 
                     Stage interfaceTut = new Stage();
@@ -88,6 +85,21 @@ public class ControleurPersonne {
                 // Le mot de passe ne correspond pas au mot de passe associé au numéro enseignant
                 message.setText("Mot de passe incorrect");
             }
+            // On vérifie si le numéro identifiant contenu dans le TextField correspond à un numéro du compte scolarité
+        } else if ((textId.getText()).equals("00000000t")) {
+            // On vérifie si le mot de passe contenu dans le PasswordField correspond au numéro du compte scolarité
+            if ((textMdp.getText()).equals("motdepasse")) {
+                //Connexion réussie : on ferme la fenêtre connexion
+                Stage interfaceCo = (Stage) buttonCo.getScene().getWindow();
+                interfaceCo.close();
+                //On ouvre l'interface scolarite
+                Stage interfaceScolarite = new Stage();
+                new interfaceScolarite().start(interfaceScolarite);
+
+            } else {
+                // Le mot de passe ne correspond pas au mot de passe associé au numéro enseignant
+                message.setText("Mot de passe incorrect");
+            }
         } else {
             // Le numéro identifiant contenu dans le TextField n'existe dans aucune table (ni étudiant, ni enseignant)
             message.setText("Identifiant inexistant");
@@ -101,11 +113,10 @@ public class ControleurPersonne {
      * La méthode deconnect est static et ne retourne rien.
      * Elle permet de déconnecter un utilisateur de l'application et le renvoyer a l'interface connexion.
      *
-     * @param SeDeconnecter
-     *          Le Button se deconnecter pour lancer la déconnexion
+     * @param SeDeconnecter Le Button se deconnecter pour lancer la déconnexion
      * @throws IOException
      */
-    
+
     public static void deconnect(Button SeDeconnecter) throws IOException {
         //Fermeture interface actuelle
         Stage interfaceI = (Stage) SeDeconnecter.getScene().getWindow();

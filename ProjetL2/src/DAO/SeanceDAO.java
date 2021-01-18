@@ -205,8 +205,6 @@ public class SeanceDAO extends DAO<Seance> {
      *          Le besoin
      * @param idSalle
      *          L'Id de la salle
-     * @param idMat
-     *          L'Id de la matière
      * @param num_ens
      *          Le numéro enseignant
      * @return
@@ -271,13 +269,12 @@ public class SeanceDAO extends DAO<Seance> {
                     ") " +
                     "VALUES "+
                     "(?,?,?,?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
-            int a=2;
             statement.setDate(1, Date.valueOf(seance.getDate()));
             statement.setString(2,seance.getHoraire());
             statement.setInt(3,seance.getNbPlaceMax());
             statement.setInt(4,seance.getNbPlaceRestante());
             statement.setString(5,seance.getBesoin());
-            statement.setInt(6,a);
+            statement.setInt(6,0);
             statement.setInt(7,seance.getIdMat());
             statement.setString(8,seance.getNum_ens());
             statement.execute();
@@ -593,6 +590,47 @@ public class SeanceDAO extends DAO<Seance> {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+
+    }
+
+
+
+
+
+
+
+
+    public static List<Seance> getSeancesBySalleManquante(){
+        try {
+
+            Connection connection = ConnexionBDD.getInstance();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM seance " +
+                    "WHERE idSalle=0");
+            ResultSet resultSet=  statement.executeQuery();
+
+
+            List<Seance> ListeSeance= new ArrayList<Seance>();
+
+            while(resultSet.next()) {
+                Seance seance= new Seance();
+                seance.setIdSeance(resultSet.getInt("idSeance"));
+                seance.setDate(resultSet.getString("date"));
+                seance.setHoraire(resultSet.getString("horaire"));
+                seance.setNbPlaceMax(resultSet.getInt("nbPlaceMax"));
+                seance.setNbPlaceRestante(resultSet.getInt("nbPlaceRestante"));
+                seance.setBesoin(resultSet.getString("besoin"));
+                seance.setIdSalle(resultSet.getInt("idSalle"));
+                seance.setIdMat(resultSet.getInt("idMat"));
+                seance.setNum_ens(resultSet.getString("num_ens"));
+                ListeSeance.add(seance);
+            }
+
+            return ListeSeance;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
 
     }
