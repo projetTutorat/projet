@@ -1,0 +1,18 @@
+Comptes étudiants:
+de 21900001t à 21900019t
+password: motdepasse
+
+Comptes tuteurs: 
+21900001t
+21900003t
+21900009t
+21900011t
+21900017t
+
+Comptes enseignants:
+de 21500001t à 21500006t
+password: motdepasse
+
+Compte scolarité:
+00000000t
+password: motdepasse
