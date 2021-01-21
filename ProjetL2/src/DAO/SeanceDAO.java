@@ -297,24 +297,12 @@ public class SeanceDAO extends DAO<Seance> {
     public static Seance modifierSeanceAttributionSalle(Seance seance,int idSalle) {
         try {
             Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement = connection.prepareStatement("UPDATE seance" +
-                    "SET" +
-                    "(" +
-                    "date= ? " +
-                    "horaire= ?"+
-                    "nbPlaceMax=?"+
-                    "nbPlcaxeRestante=?"+
-                    "besoin=?"+
-                    "idSalle=?"+
-                    ")" +
+            PreparedStatement statement = connection.prepareStatement("UPDATE seance " +
+                    "SET " +
+                    "idSalle=? "+
                     "WHERE idSeance=?;");
-            statement.setString(1,seance.getDate());
-            statement.setString(2,seance.getHoraire());
-            statement.setInt(3,seance.getNbPlaceMax());
-            statement.setInt(4,seance.getNbPlaceRestante());
-            statement.setString(5,seance.getBesoin());
-            statement.setInt(6,idSalle);
-            statement.setInt(7,seance.getIdSeance());
+            statement.setInt(1,idSalle);
+            statement.setInt(2,seance.getIdSeance());
 
             statement.execute();
 
@@ -500,7 +488,16 @@ public class SeanceDAO extends DAO<Seance> {
         return seance;
     }
 
-
+    /**
+     * La m√©thode ajouterTuteurSeance est static et retourne le parametre seance.
+     * Elle permet d'ajouter un tuteur ‡ une s√©ance.
+     *
+     * @param seance
+     *          La s√©ance
+     * @param idTuteur
+     *          Le num√©ro √©tudiant
+     * @return
+     */
 
     public static Seance ajouterTuteurSeance(Seance seance, int idTuteur){
         try {
@@ -523,7 +520,14 @@ public class SeanceDAO extends DAO<Seance> {
     }
 
 
-
+    /**
+     * La m√©thode getSeancesByidTuteur est static et retourne le parametre Listeseance.
+     * Elle permet de retourner les informations des sÈances auxquelles un tuteur choisi est inscrit
+     *
+     * @param idSeance
+     *          La s√©ance
+     * @return
+     */
     public static List<Seance> getSeancesByidTuteur(int idTuteur){
         try {
 
@@ -567,7 +571,16 @@ public class SeanceDAO extends DAO<Seance> {
 
     }
 
-
+    /**
+     * La m√©thode tuteurAppartientSeance est static et retourne le parametre seance.
+     * Elle permet de tester grace ‡ la BDD si un tuteur appartient ‡ une sÈance ou non
+     *
+     * @param idSeance
+     *          La s√©ance
+     * @param idTuteur
+     *          Le num√©ro √©tudiant
+     * @return
+     */
 
     public static boolean tuteurAppartientSeance(int idSeance, int idTuteur){
         try {
@@ -597,7 +610,12 @@ public class SeanceDAO extends DAO<Seance> {
 
 
 
+    /**
+     * La m√©thode getSeancesBySalleManquante est static et retourne le parametre Listeseance.
+     * Elle permet de retourner les informations des sÈances auxquelles aucune salle n'est attribuÈe
 
+     * @return
+     */
 
 
 

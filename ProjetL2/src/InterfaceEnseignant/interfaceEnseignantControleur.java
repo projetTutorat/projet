@@ -58,6 +58,14 @@ public class interfaceEnseignantControleur implements Initializable   {
     	
     }
 
+    /**
+     * La m√©thode getListMesSeances n'est pas static et elle ne retourne rien.
+     * Elle permet d'afficher les tutorats d'un enseignant gr‚ce ‡ la mÈthode afficherMesTutoratsEnseignant
+     *
+     * @param actionEvent
+     *          actionEvent
+     * @throws IOException
+     */
     public void getListMesSeances(ActionEvent actionEvent) {
     	ControleurSeance.afficherMesTutoratsEnseignant(interfaceConnexionControleur.Instance.getNum(),TreeViewSeance);
         System.out.println(interfaceConnexionControleur.Instance.getNum());
@@ -65,7 +73,14 @@ public class interfaceEnseignantControleur implements Initializable   {
 
     }
 
-
+    /**
+     * La m√©thode initialize n'est pas static et elle ne retourne rien.
+     * Elle permet au lancement de l'interface de remplir les treeView
+     *
+     * @param actionEvent
+     *          actionEvent
+     * @throws IOException
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ControleurSeance.afficherMesTutoratsEnseignant(interfaceConnexionControleur.Instance.getNum(),TreeViewSeance);

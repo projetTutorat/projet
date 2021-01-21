@@ -45,7 +45,7 @@ public class ControleurSeance  {
 
             Enseignant enseignant = EnseignantDAO.getEnseignantById(seance.getNum_ens());
 
-            if (SeanceDAO.etudiantAppartientSeance(seance.getIdSeance(),num_etu)==false && seance.getIdSalle()!=0) {
+            if (SeanceDAO.etudiantAppartientSeance(seance.getIdSeance(),num_etu)==false && seance.getIdSalle()!=0 && SeanceDAO.tuteurAppartientSeance(seance.getIdSeance(),(TuteurDAO.getTuteurById(num_etu)).getIdTuteur())==false) {
 
                 TreeItem treeItemSeanceDisponible = new TreeItem("Tutorat le " + seance.getDate() + " a† " + seance.getHoraire() +"\n"+
                         "   Besoin: " +
@@ -210,8 +210,6 @@ public class ControleurSeance  {
 
         try {
                 Matiere matiere = MatiereDAO.getMatiereBySousCategorie(String.valueOf(listMat.getValue()));
-            System.out.println(String.valueOf(listMat.getValue()));
-            System.out.println(matiere.toString());
 
                 Seance seance = new Seance();
                 LocalDate data=datePickerSeance.getValue();
@@ -255,6 +253,8 @@ public class ControleurSeance  {
 
 
     /**
+     * La m√©thode afficherSeanceDisponibleTuteur est static et ne retourne rien.
+     * Elle permet d'afficher les tutorats disponibles dans un treeView en fonction d'un num√©ro etudiant.
      * @param num_etu
      * @param treeView
      */
@@ -280,7 +280,7 @@ public class ControleurSeance  {
 
             Enseignant enseignant = EnseignantDAO.getEnseignantById(seance.getNum_ens());
 
-            if (SeanceDAO.tuteurAppartientSeance(seance.getIdSeance(),tuteur.getIdTuteur())==false && seance.getIdSalle()!=0) {
+            if (SeanceDAO.tuteurAppartientSeance(seance.getIdSeance(),tuteur.getIdTuteur())==false && seance.getIdSalle()!=0 && SeanceDAO.etudiantAppartientSeance(seance.getIdSeance(),tuteur.getNumero_identification())==false) {
 
                 TreeItem treeItemSeanceDisponible = new TreeItem("Tutorat le " + seance.getDate() + " a† " + seance.getHoraire() +"\n"+
                         "   Besoin: " +
@@ -297,7 +297,8 @@ public class ControleurSeance  {
 
 
     /**
-     *
+     * La m√©thode afficheSeanceInscritTuteur est static et ne retourne rien.
+     * Elle permet d'afficher les sÈances dans un treeView en fonction d'un num√©ro etudiant.
      * @param num_etu
      * @param treeView
      */
@@ -341,7 +342,11 @@ public class ControleurSeance  {
 
 
 
-
+    /**
+     * La m√©thode afficheSeanceSansSalle est static et ne retourne rien.
+     * Elle permet d'afficher les sÈances dans un treeView.
+     * @param treeView
+     */
 
     public static void afficheSeanceSansSalle(TreeView treeView) {
         List<Seance> listeSeance = SeanceDAO.getSeancesBySalleManquante();
@@ -374,9 +379,21 @@ public class ControleurSeance  {
             }
         }
     }
+    /**
+     * La m√©thode ajouterSalleASeance est static et ne retourne rien.
+     * Elle permet d'ajouter une salle ‡ une seance passÈe en parametre
+     * @param listeSalle
+     * @param seance
+     * @param buttonAjouterSalle
+     */
+    public static void ajouterSalleASeance(ComboBox listeSalle,Seance seance, Button buttonAjouterSalle){
+        String salleSelectionne = String.valueOf(listeSalle.getValue());
+        Salle salle= SalleDAO.getSalleBySiteBatimentEtageNumeroSalle(salleSelectionne.split(" ")[0],salleSelectionne.split(" ")[1], Integer.parseInt(salleSelectionne.split(" ")[2]),salleSelectionne.split(" ")[3]);
+        SeanceDAO.modifierSeanceAttributionSalle(seance,salle.getIdSalle());
 
 
-
-
+        Stage interfaceAS = (Stage) buttonAjouterSalle.getScene().getWindow();
+        interfaceAS.close();
+    }
 
 }

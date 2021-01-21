@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceScolarite.interfaceAttributionSalleControleur">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1d1d1d;" stylesheets="@../view/DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceScolarite.interfaceAttributionSalleControleur">
    <children>
-      <Button layoutX="274.0" layoutY="337.0" mnemonicParsing="false" text="Valider" />
-      <ComboBox fx:id="ComboBoxAttributionSalle" layoutX="226.0" layoutY="104.0" prefWidth="150.0" promptText="Salle" />
+      <Button fx:id="Valider" onAction="#Valider" layoutX="253.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-radius: 10; -fx-border-radius: 10;" text="Valider" />
+      <ComboBox fx:id="ComboBoxAttributionSalle" layoutX="225.0" layoutY="99.0" prefWidth="150.0" promptText="Salle" style="-fx-border-color: #d8d8d8;">
+         <styleClass>
+            <String fx:value="table-view" />
+            <String fx:value="label" />
+         </styleClass></ComboBox>
    </children>
 </AnchorPane>

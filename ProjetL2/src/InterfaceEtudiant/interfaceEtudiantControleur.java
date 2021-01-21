@@ -63,6 +63,8 @@ public class interfaceEtudiantControleur implements Initializable  {
 
 
 	/**
+	 *  La méthode inscriptionTutorat n'est pas static et elle ne retourne rien.
+	 *  Elle permet lors du clic sur un tutorat disponible de faire apparaitre un garde fou, demandant une confirmation d'inscription a ce tutorat
 	 * @param event
 	 */
 	public void inscriptionTutorat(MouseEvent event){
@@ -122,7 +124,11 @@ public class interfaceEtudiantControleur implements Initializable  {
 
 	}
 
-
+	/**
+	 *  La méthode desinscriptionTutorat n'est pas static et elle ne retourne rien.
+	 *  Elle permet lors du clic sur un tutorat inscrit de faire apparaitre un garde fou, demandant une confirmation de desinscription de ce tutorat
+	 * @param event
+	 */
 
 	public void desinscriptionTutorat(MouseEvent event){
 

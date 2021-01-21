@@ -32,13 +32,26 @@ public class interfaceScolariteControleur implements Initializable {
     @FXML private TreeView<String> TreeViewTutoratsSansSalle;
 
 
-
+    /**
+     * La m√©thode Deconnect n'est pas static et ne retourne rien.
+     * Elle permet de deconnecter une personne suite ‡ l'action du bouton associÈ
+     *
+     * @param actionEvent
+     *         actionEvent
+     * @throws IOException
+     */
     public void Deconnect(ActionEvent actionEvent) throws IOException {
 
         ControleurPersonne.deconnect(SeDeconnecter);
     }
 
-
+    /**
+     * La m√©thode attributionSalle n'est pas static et ne retourne rien.
+     * Elle permet d'attribuer une salle ‡ un tutorat suite ‡ l'action du bouton associÈ
+     * @param actionEvent
+     *         actionEvent
+     * @throws IOException
+     */
 
     public void attributionSalle(MouseEvent event) throws IOException {
 
@@ -69,7 +82,10 @@ public class interfaceScolariteControleur implements Initializable {
         }
 
     }
-
+    /**
+     * La m√©thode getSeance n'est pas static et retourne le parametre seance.
+     * Elle permet d'obtenir les informations d'une seance
+     */
     public Seance getSeance() {
         TreeItem<String> item =  TreeViewTutoratsSansSalle.getSelectionModel().getSelectedItem();
         String date= String.valueOf(item).substring(29,39);
@@ -97,7 +113,22 @@ public class interfaceScolariteControleur implements Initializable {
     public interfaceScolariteControleur(){
         Instance = this;
     }
-
+    /**
+     * La m√©thode reload n'est pas static et elle ne retourne rien.
+     * Elle permet de rafraichir l'interface
+     */
+    public void reload(){
+        ControleurSeance.afficheSeanceSansSalle(TreeViewTutoratsSansSalle);
+    }
+    
+    /**
+     * La m√©thode initialize n'est pas static et elle ne retourne rien.
+     * Elle permet au lancement de l'interface de remplir les treeView
+     *
+     * @param actionEvent
+     *          actionEvent
+     * @throws IOException
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

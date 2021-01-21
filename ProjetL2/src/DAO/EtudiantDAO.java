@@ -186,9 +186,9 @@ public class EtudiantDAO extends DAO<Etudiant>  {
     public static Etudiant demissionEtudiantSeance(Etudiant etudiant, int idSeance){
         try {
             Connection connection = ConnexionBDD.getInstance();
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM participe_etudiant_seance" +
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM participe_etudiant_seance " +
             		"WHERE num_etu = "+ etudiant.getNumero_identification() +
-            		"AND idSeance = "+ idSeance
+            		" AND idSeance = "+ idSeance
             		);
 
             statement.execute();

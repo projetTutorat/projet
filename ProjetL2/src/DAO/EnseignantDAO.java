@@ -62,7 +62,14 @@ public class EnseignantDAO extends DAO<Enseignant>  {
     }
 
 
-
+    /**
+     * La méthode getEnseignantByNomPrenom est static et retourne le parametre enseignant.
+     * Elle permet d'obtenir un enseignant via son nom et son prenom
+     *
+     * @param nom
+     * @param prenom
+     * @return
+     */
     public static Enseignant getEnseignantByNomPrenom(String nom, String prenom){
         try {
             Connection connection = ConnexionBDD.getInstance();

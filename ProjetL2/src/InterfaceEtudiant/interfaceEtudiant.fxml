@@ -8,7 +8,7 @@
 <AnchorPane fx:id="Main" prefHeight="670.0" prefWidth="966.0" style="-fx-background-color: #1d1d1d;" stylesheets="@../view/DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceEtudiant.interfaceEtudiantControleur">
    <children>
        <Label fx:id="Bonjour" layoutX="23.0" layoutY="14.0" prefHeight="33.0" prefWidth="72.0" text="Bonjour !" />
-      <Button fx:id="SeDeconnecter" layoutX="794.0" layoutY="14.0" mnemonicParsing="false" onAction="#Deconnect" style="-fx-border-radius: 10;" text="Se déconnecter" textAlignment="CENTER">
+      <Button fx:id="SeDeconnecter" layoutX="794.0" layoutY="14.0" mnemonicParsing="false" onAction="#Deconnect" style="-fx-border-radius: 10; -fx-background-radius: 10;" stylesheets="@../view/DarkTheme.css" text="Se déconnecter" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -29,7 +29,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TreeView fx:id="TreeViewTutoratsInscrits" onContextMenuRequested="#desinscriptionTutorat" onMouseClicked="#desinscriptionTutorat" prefHeight="212.0" prefWidth="572.0" />
+                        <TreeView fx:id="TreeViewTutoratsInscrits" layoutX="-7.0" onContextMenuRequested="#desinscriptionTutorat" onMouseClicked="#desinscriptionTutorat" prefHeight="212.0" prefWidth="579.0" />
                      </children></AnchorPane>
             </content>
                <styleClass>
@@ -44,7 +44,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TreeView fx:id="TreeViewTutoratsDisponibles" onContextMenuRequested="#inscriptionTutorat" onMouseClicked="#inscriptionTutorat" prefHeight="212.0" prefWidth="572.0" />
+                        <TreeView fx:id="TreeViewTutoratsDisponibles" layoutX="-8.0" onContextMenuRequested="#inscriptionTutorat" onMouseClicked="#inscriptionTutorat" prefHeight="212.0" prefWidth="580.0" />
                      </children></AnchorPane>
             </content>
                <styleClass>

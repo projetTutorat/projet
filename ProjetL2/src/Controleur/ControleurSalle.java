@@ -24,7 +24,7 @@ public class ControleurSalle  {
 
         for (Salle salle : listeSalle) {
             int index = listSalle.getItems().size();
-            listSalle.getItems().add(index, salle.getSite()+salle.getBatiment()+salle.getEtage()+salle.getNumeroSalle());
+            listSalle.getItems().add(index, salle.getSite()+" "+salle.getBatiment()+" "+salle.getEtage()+" "+salle.getNumeroSalle());
         }
     }
 
@@ -43,7 +43,7 @@ public class ControleurSalle  {
 
         for (Salle salle : listeSalle) {
             int index = listSalle.getItems().size();
-            listSalle.getItems().add(index, salle.getSite()+salle.getBatiment()+salle.getEtage()+salle.getNumeroSalle());
+            listSalle.getItems().add(index, salle.getSite()+" "+salle.getBatiment()+" "+salle.getEtage()+" "+salle.getNumeroSalle());
         }
     }
 
@@ -62,7 +62,7 @@ public class ControleurSalle  {
 
         for (Salle salle : listeSalle) {
             int index = listSalle.getItems().size();
-            listSalle.getItems().add(index, salle.getSite()+salle.getBatiment()+salle.getEtage()+salle.getNumeroSalle());
+            listSalle.getItems().add(index, salle.getSite()+" "+salle.getBatiment()+" "+salle.getEtage()+" "+salle.getNumeroSalle());
         }
     }
 

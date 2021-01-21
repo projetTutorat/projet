@@ -16,6 +16,13 @@ public class interfaceCreerSeance extends Application  {
 
     public static Stage classStage;
 
+	 /**
+	    * La méthode main est static et ne retourne rien.
+	    * Elle éxécute l'interface.
+	    *
+	    * @param args
+	    *          L'argument
+	    */
     public static void main(String[] args) {
         launch(args);
     }
