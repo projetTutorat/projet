@@ -20,29 +20,29 @@ import javafx.scene.control.TextField;
  */
 public class interfaceConnexionControleur {
 
-	// On rÈcupËre les id des ÈlÈments qui composent l'interface FXML
+	// On r√©cup√®re les id des √©l√©ments qui composent l'interface FXML
 	@FXML private TextField textId;
 	@FXML private PasswordField textMdp;
 	@FXML private Label message;
 	@FXML private Button buttonCo;
 
 	/**
-	 * La m√©thode Login n'est pas static et elle ne retourne rien.
+	 * La m√É¬©thode Login n'est pas static et elle ne retourne rien.
 	 * Elle permet de lancer la connexion lors de l'appuie du bouton Connexion sur l'interface connexion.
 	 *
 	 * @param actionEvent
-	 * 			actionEvent d√©clanch√© par le bouton connexion
+	 * 			actionEvent d√É¬©clanch√É¬© par le bouton connexion
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 * @throws IOException
 	 */
 
-	//MÈthode Login dÈclenchÈe ‡ l'appuie du bouton Connexion
+	//M√©thode Login d√©clench√©e √† l'appuie du bouton Connexion
 	
 	public void Login(ActionEvent actionEvent) throws ClassNotFoundException, SQLException, IOException {
 
 
-		// Appel de la mÈthode connect() avec les valeurs des ÈlÈments qui composent l'interface FXML
+		// Appel de la m√©thode connect() avec les valeurs des √©l√©ments qui composent l'interface FXML
 		ControleurPersonne.connect(textId, textMdp, message, buttonCo);
 
 
@@ -52,7 +52,7 @@ public class interfaceConnexionControleur {
 
 
 	/**
-	 * La m√©thode ChangePswd n'est pas static et elle ne retourne rien.
+	 * La m√É¬©thode ChangePswd n'est pas static et elle ne retourne rien.
 	 * Elle permet de changer le motdepasse en redirigeant l'utilisateur vers un lien.
 	 *
 	 * @param actionEvent
@@ -60,14 +60,14 @@ public class interfaceConnexionControleur {
 	 */
 
 	public void ChangePswd(ActionEvent actionEvent){
-		BrowserControl.displayURL("https://multipass.univ-tours.fr/activation.php%22");
+		BrowserControl.displayURL("https://multipass.univ-tours.fr/activation.php");
 	}
 
 	public String getNum() {
 		return textId.getText();
 	}
 
-	// On crÈe une instance statique qui va nous permettre de rÈcupÈrer les mÈthodes ‡ travers d'autre classe sans faire de new
+	// On cr√©e une instance statique qui va nous permettre de r√©cup√©rer les m√©thodes √† travers d'autre classe sans faire de new
 	public static interfaceConnexionControleur Instance;
 
 	public interfaceConnexionControleur(){
